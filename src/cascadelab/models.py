@@ -57,8 +57,17 @@ class FixtureStore:
         for model in self.models.values():
             path = self.folder / f"{model}.jsonl"
             if path.exists():
-                for line in path.read_text(encoding="utf-8").splitlines():
-                    c = Call(**json.loads(line))
+                lines = path.read_text(encoding="utf-8").splitlines()
+                for i, line in enumerate(lines):
+                    try:
+                        c = Call(**json.loads(line))
+                    except (json.JSONDecodeError, TypeError):
+                        if i == len(lines) - 1:
+                            # A record run stopped mid-write. Drop the partial line so the next append
+                            # starts clean. Record again fills this call.
+                            path.write_text("".join(x + "\n" for x in lines[:-1]), encoding="utf-8")
+                            break
+                        raise
                     self.calls[c.key] = c
 
     def get(self, role: str, task: VisibleTask, sample: int = 0) -> Call:
@@ -133,12 +142,21 @@ class OpenAICompatible:
                 with urllib.request.urlopen(req, timeout=self.timeout_s) as resp:  # noqa: S310
                     data = json.loads(resp.read())
             except urllib.error.HTTPError as e:
-                if e.code == 429 and attempt < 4:
+                if (e.code == 429 or e.code >= 500) and attempt < 4:
+                    self.sleep(wait)
+                    wait *= 2
+                    continue
+                raise
+            except urllib.error.URLError:
+                if attempt < 4:
                     self.sleep(wait)
                     wait *= 2
                     continue
                 raise
             ms = round((time.perf_counter() - start) * 1000)
             usage = data["usage"]
-            return data["choices"][0]["message"]["content"], usage["prompt_tokens"], usage["completion_tokens"], ms
+            content = data["choices"][0]["message"]["content"]
+            if not isinstance(content, str):
+                raise ValueError(f"{model} returned no text content")
+            return content, usage["prompt_tokens"], usage["completion_tokens"], ms
         raise RuntimeError("unreachable")

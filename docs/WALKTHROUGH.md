@@ -48,7 +48,7 @@ Visible checks live here. A real system could run them at run time.
 
 - `parse_number` reads a math answer. It accepts a plain number, with an optional dollar sign and commas.
 - `parse_json` and `schema_ok` check JSON against the task schema.
-- `run_tests` runs code against the example tests. It uses a subprocess with `-I -S`, a temp folder, a 5 second timeout, and CPU and memory limits.
+- `run_tests` runs code against the example tests. It uses a subprocess with `-I -S`, a temp folder, no stdin, a 5 second timeout, CPU and memory limits, and its own process group. The program must reach a fixed exit code after the last test, so an early `exit(0)` does not count as a pass.
 - `visible_check` picks the right check for a task.
 - `normalize` turns an answer into a form that two answers can be compared in. The agreement cascade uses it.
 
@@ -84,7 +84,7 @@ The strategies that a real system could run.
 
 - `cheap_only` and `strong_only` make one call.
 - `cascade_check` asks the cheap model, runs the visible check, and asks the strong model if the check fails.
-- `cascade_agree` takes five cheap samples. If they all agree after `normalize`, it keeps the answer. Otherwise it asks the strong model. Samples run in parallel, so latency counts the slowest one.
+- `cascade_agree` takes five cheap samples. If they all agree after `normalize` and parse, it keeps the answer. Otherwise it asks the strong model. Samples run in parallel, so latency counts the slowest one.
 - `make_routed` wraps a trained router. The router decides before any call.
 
 This file imports `checks`, `models`, `router` and `tasks` only.
@@ -95,7 +95,7 @@ The learned router.
 
 `hash_embed` turns text into a 512 number vector. It hashes words and word pairs. It needs no download.
 
-`Router.fit` trains a logistic regression on development tasks. The label says whether the cheap answer failed the hidden check. It raises an error if any task is outside the development split.
+`Router.fit` trains a logistic regression on development tasks. The label says whether the cheap answer failed the hidden check. It raises an error if any task is outside the development split or inside the held-out split.
 
 `escalate` returns true when the predicted chance of failure is at least 0.5.
 
@@ -153,7 +153,7 @@ The `cascadelab` command. It has `make-tasks`, `record`, `run`, `report` (also c
 - `test_fakes.py`: the cheap fake fails on a known subset, and the strong fake fails less.
 - `test_strategies.py`: each strategy's logic on hand-made calls.
 - `test_router.py`: the router refuses held-out tasks and trains on development only.
-- `test_leak.py`: strategy code never imports the grader, never opens hidden files, and gives the same output when hidden data is poisoned.
+- `test_leak.py`: strategy code never imports the grader, and an audit hook makes any open of a hidden file raise while strategies run, whichever file API does it.
 - `test_replay.py`: two runs give the same bytes, and the committed results match.
 - `test_record.py`: record mode against a local test server: resume, headers, temperatures, backoff.
 - `test_metrics.py`: the interval code.

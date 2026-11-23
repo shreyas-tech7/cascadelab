@@ -28,8 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
       PROVIDER: ${{ inputs.provider }}
       CHEAP: ${{ inputs.cheap }}
       STRONG: ${{ inputs.strong }}
@@ -42,6 +40,9 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: ./init.sh
       - name: Record (resumes from the committed fixtures)
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: .venv/bin/cascadelab record --provider "$PROVIDER" --cheap "$CHEAP" --strong "$STRONG" --limit "$LIMIT"
       - uses: actions/upload-artifact@v4
         with:

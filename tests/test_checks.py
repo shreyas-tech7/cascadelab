@@ -31,3 +31,21 @@ def test_run_tests_pass_fail_and_timeout():
 def test_strip_fence():
     assert strip_fence("```python\nx = 1\n```") == "x = 1"
     assert strip_fence("x = 1") == "x = 1"
+
+
+def test_code_that_exits_early_does_not_pass():
+    """Broken case: a program that calls exit(0) before the tests run."""
+    from cascadelab.checks import run_tests
+
+    assert not run_tests("import sys\nsys.exit(0)", ("assert False",))
+    assert not run_tests("import os\nos._exit(0)", ("assert False",))
+    assert run_tests("def f():\n    return 1", ("assert f() == 1",))
+
+
+def test_code_cannot_read_stdin_or_fork():
+    """Broken case: input() blocks on the terminal, and a forked child holds the pipe open."""
+    from cascadelab.checks import run_tests
+
+    assert not run_tests("x = input()", ("assert True",))
+    forker = "import os\nif os.fork() == 0:\n    import time\n    time.sleep(30)\ndef f():\n    return 1"
+    assert run_tests(forker, ("assert f() == 1",)) in (True, False)

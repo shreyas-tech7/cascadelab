@@ -35,7 +35,7 @@ def train_router(tasks: dict[str, VisibleTask], store: FixtureStore, split: dict
     hidden = grader.load_hidden(data_dir)
     dev = [tasks[i] for i in split["dev"]]
     failed = [not grader.correct(t, hidden[t.id], store.get("cheap", t).answer) for t in dev]
-    return Router().fit(dev, failed, set(split["dev"]))
+    return Router().fit(dev, failed, split)
 
 
 def run_strategies(tasks: list[VisibleTask], store: FixtureStore, router: Router) -> dict[str, list[Outcome]]:
@@ -83,12 +83,8 @@ def evaluate_split(tasks, store, router, hidden, prices) -> tuple[dict, list[dic
     }
     # Oracle: knows from the hidden check whether the cheap answer is right, and calls only the model it needs.
     outcomes["oracle_router"] = [
-        o_c if ok else o_s
-        for o_c, o_s, ok in zip(outcomes["cheap_only"], outcomes["strong_only"], right["cheap_only"], strict=True)
-    ]
-    outcomes["oracle_router"] = [
-        Outcome(o.answer, o.calls, not ok, o.latency_ms)
-        for o, ok in zip(outcomes["oracle_router"], right["cheap_only"], strict=True)
+        Outcome(c.answer, c.calls, False, c.latency_ms) if ok else Outcome(s.answer, s.calls, True, s.latency_ms)
+        for c, s, ok in zip(outcomes["cheap_only"], outcomes["strong_only"], right["cheap_only"], strict=True)
     ]
     right["oracle_router"] = [a or b for a, b in zip(right["cheap_only"], right["strong_only"], strict=True)]
     costs = {name: [sum(call_cost(c, prices) for c in o.calls) for o in outs] for name, outs in outcomes.items()}

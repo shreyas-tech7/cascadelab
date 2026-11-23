@@ -58,13 +58,13 @@
 <text class="ink" x="596" y="111" font-size="12">Cascade on agreement (k=5)</text>
 <g class="s-learned_router" data-strategy="learned_router"><title>Learned router: accuracy 79.2% (68.4% to 86.9%), $0.0268 per 1,000 tasks, escalation 33.3%</title>
 <line class="ci s-learned_router" x1="234.3" x2="234.3" y1="263.6" y2="126.6"/>
-<circle class="ring s-learned_router" cx="234.3" cy="184.2" r="6"/>
+<path class="ring s-learned_router" d="M234.3 192.2L242.3 178.2L226.3 178.2Z"/>
 </g>
 <rect class="s-learned_router" x="578" y="123" width="12" height="12" rx="3"/>
 <text class="ink" x="596" y="133" font-size="12">Learned router</text>
 <g class="s-oracle_router" data-strategy="oracle_router"><title>Oracle router (upper bound): accuracy 98.6% (92.5% to 99.8%), $0.0218 per 1,000 tasks, escalation 26.4%</title>
 <line class="ci s-oracle_router" x1="203.6" x2="203.6" y1="85.2" y2="31.8"/>
-<rect class="ring s-oracle_router" x="197.6" y="34.3" width="12" height="12" rx="2"/>
+<path class="ring s-oracle_router" d="M200.6 32.3h6v5h5v6h-5v5h-6v-5h-5v-6h5Z"/>
 </g>
 <rect class="s-oracle_router" x="578" y="145" width="12" height="12" rx="3"/>
 <text class="ink" x="596" y="155" font-size="12">Oracle router (upper bound)</text>

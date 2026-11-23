@@ -54,3 +54,9 @@ def test_strategies_on_real_fixtures_follow_their_rules():
         assert cascade_check(t, store).escalated == (not visible_check(t, c.answer))
         keys = {normalize(t, store.get("cheap", t, i).answer) for i in range(5)}
         assert cascade_agree(t, store).escalated == (len(keys) > 1)
+
+
+def test_agreement_on_unparseable_answers_escalates(tmp_path):
+    """Broken case: five different unparseable answers all normalize to "none" and count as agreement."""
+    out = cascade_agree(T, _store(tmp_path, ["no idea", "unsure", "?", "pass", "n/a"], "4"))
+    assert out.escalated and out.answer == "4"

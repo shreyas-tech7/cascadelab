@@ -1,10 +1,11 @@
 """The visibility rule: no hidden check, gold answer or hidden test reaches strategy code."""
 
 import ast
-import builtins
 import dataclasses
-import json
-import shutil
+import io
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -52,31 +53,49 @@ def test_visible_task_has_no_hidden_fields():
         assert f'"{word}"' not in raw
 
 
+_LOCKED = False
+
+
+def _audit(event, args):
+    """Python audit hook. While the lock is on, block every route to hidden files.
+
+    The "open" event fires for builtins.open, io.open, os.open, Path.read_text, Path.read_bytes
+    and Path.open alike, so a strategy cannot get round the lock by picking another file API.
+    Subprocesses are blocked too, except the test runner in checks.run_tests.
+    """
+    if not _LOCKED:
+        return
+    if event == "open":
+        target = args[0]
+        if isinstance(target, (str, bytes, Path)) and Path(os.fsdecode(target)).name in HIDDEN_FILES:
+            raise AssertionError(f"strategy code touched hidden data: {target}")
+    elif event == "subprocess.Popen":
+        exe, argv = args[0], list(args[1] or [])
+        runner = os.fsdecode(exe or "") == sys.executable and argv[1:3] == ["-I", "-S"]
+        if not (runner and len(argv) == 4 and "cascadelab-" in str(argv[3])):
+            raise AssertionError(f"strategy code started a process: {argv}")
+    elif event in {"os.system", "os.exec", "os.posix_spawn", "os.spawn"}:
+        raise AssertionError(f"strategy code started a process: {event}")
+
+
+sys.addaudithook(_audit)
+
+
 @pytest.fixture
 def no_hidden(monkeypatch):
     """Make every route to hidden data raise while strategies run."""
+    global _LOCKED
 
     def boom(*a, **k):
         raise AssertionError("strategy code touched hidden data")
 
-    real_open = builtins.open
-    real_read = Path.read_text
-
-    def guarded_open(file, *a, **k):
-        if Path(str(file)).name in HIDDEN_FILES:
-            boom()
-        return real_open(file, *a, **k)
-
-    def guarded_read(self, *a, **k):
-        if self.name in HIDDEN_FILES:
-            boom()
-        return real_read(self, *a, **k)
-
     monkeypatch.setattr(grader, "load_hidden", boom)
     monkeypatch.setattr(grader, "correct", boom)
-    monkeypatch.setattr(builtins, "open", guarded_open)
-    monkeypatch.setattr(Path, "read_text", guarded_read)
-    return boom
+    _LOCKED = True
+    try:
+        yield
+    finally:
+        _LOCKED = False
 
 
 def _setup():
@@ -91,28 +110,42 @@ def test_strategies_run_with_hidden_data_locked(no_hidden):
     held, store, router = _SETUP
     out = evaluate.run_strategies(held, store, router)
     assert set(out) == {"cheap_only", "strong_only", "cascade_check", "cascade_agree", "learned_router"}
+    assert all(len(v) == len(held) for v in out.values())
 
 
-def test_the_lock_catches_a_leaky_strategy(no_hidden):
-    """Broken case: a strategy that peeks at gold answers raises under the lock."""
-    with pytest.raises(AssertionError, match="hidden data"):
-        grader.load_hidden()
-    with pytest.raises(AssertionError, match="hidden data"):
-        (DATA / "tasks" / "hidden.jsonl").read_text()
+HIDDEN = DATA / "tasks" / "hidden.jsonl"
+LEAKS = {
+    "read_text": lambda: HIDDEN.read_text(),
+    "read_bytes": lambda: HIDDEN.read_bytes(),
+    "path_open": lambda: HIDDEN.open("rb").close(),
+    "builtin_open": lambda: open(HIDDEN, "rb").close(),  # noqa: SIM115
+    "io_open": lambda: io.open(HIDDEN, "rb").close(),  # noqa: SIM115, UP020
+    "os_open": lambda: os.close(os.open(HIDDEN, os.O_RDONLY)),
+    "relative_path": lambda: open(os.path.relpath(HIDDEN), "rb").close(),  # noqa: SIM115
+    "world_file": lambda: (DATA / "fake" / "world.jsonl").read_bytes(),
+    "grader": lambda: grader.load_hidden(),
+    "subprocess": lambda: subprocess.run(["cat", str(HIDDEN)], capture_output=True, check=False),  # noqa: S603, S607
+}
 
 
-def test_poisoned_hidden_data_changes_no_strategy_output(tmp_path):
-    """Replace every gold answer and hidden test with junk. Strategy outputs must not move."""
+@pytest.mark.parametrize("route", sorted(LEAKS))
+def test_the_lock_catches_a_leaky_strategy(no_hidden, monkeypatch, route):
+    """Broken case: a strategy that peeks at hidden data by any file API raises inside run_strategies."""
     held, store, router = _SETUP
-    before = evaluate.run_strategies(held, store, router)
-    data = tmp_path / "data"
-    shutil.copytree(DATA, data)
-    rows = [json.loads(x) for x in (data / "tasks" / "hidden.jsonl").read_text().splitlines()]
-    junk = [{"id": r["id"], "gold": -999, "hidden_tests": ["assert False"]} for r in rows]
-    (data / "tasks" / "hidden.jsonl").write_text("".join(json.dumps(r) + "\n" for r in junk))
-    tasks = load_visible(data)
-    after = evaluate.run_strategies([tasks[t.id] for t in held], store, router)
-    assert before == after
+
+    def leaky(task, store_):
+        LEAKS[route]()
+        return evaluate.STATIC["cheap_only"](task, store_)
+
+    monkeypatch.setattr(evaluate, "STATIC", dict(evaluate.STATIC) | {"leaky": leaky})
+    with pytest.raises(AssertionError, match="hidden data|started a process"):
+        evaluate.run_strategies(held[:1], store, router)
 
 
 _SETUP = _setup()
+
+
+def test_only_the_harness_imports_the_grader():
+    """Broken case: report.py or cli.py imports grader and starts scoring outside the harness."""
+    users = {p.name for p in PKG.glob("*.py") if "grader" in _imports(p) and p.name != "grader.py"}
+    assert users == {"evaluate.py"}

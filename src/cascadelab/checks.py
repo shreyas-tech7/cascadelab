@@ -7,11 +7,13 @@ and the runner, but lives in `grader.py`.
 
 from __future__ import annotations
 
+import contextlib
 import functools
 import hashlib
 import json
 import os
 import re
+import signal
 import subprocess
 import sys
 import tempfile
@@ -29,6 +31,7 @@ TYPES = {
     "array": lambda v: isinstance(v, list),
 }
 TEST_TIMEOUT_S = 5
+PASS_CODE = 97
 
 
 def strip_fence(text: str) -> str:
@@ -59,6 +62,7 @@ def _limits() -> None:  # pragma: no cover - runs in the child process
 
     resource.setrlimit(resource.RLIMIT_CPU, (TEST_TIMEOUT_S, TEST_TIMEOUT_S))
     resource.setrlimit(resource.RLIMIT_AS, (512 * 2**20, 512 * 2**20))
+    resource.setrlimit(resource.RLIMIT_NPROC, (0, 0))
 
 
 @functools.lru_cache(maxsize=8192)
@@ -68,22 +72,31 @@ def run_tests(code: str, tests: tuple[str, ...]) -> bool:
     shortcut: a subprocess with a timeout, CPU and memory limits is not a full sandbox. Run only
     model code you are willing to execute on this machine.
     """
-    src = code + "\n\n" + "\n".join(tests) + "\n"
+    # The sentinel exit code proves the tests ran to the end. Code that calls exit(0) early fails.
+    src = code + "\n\n" + "\n".join(tests) + f"\nimport os as _os\n_os._exit({PASS_CODE})\n"
     with tempfile.TemporaryDirectory(prefix="cascadelab-") as tmp:
         path = Path(tmp) / f"t_{hashlib.sha256(src.encode()).hexdigest()[:12]}.py"
         path.write_text(src, encoding="utf-8")
+        proc = subprocess.Popen(  # noqa: S603 - fixed interpreter, file we just wrote
+            [sys.executable, "-I", "-S", str(path)],
+            cwd=tmp,
+            env={"PATH": os.environ.get("PATH", "")},
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+            preexec_fn=_limits if os.name == "posix" else None,  # noqa: PLW1509
+        )
         try:
-            proc = subprocess.run(  # noqa: S603 - fixed interpreter, file we just wrote
-                [sys.executable, "-I", "-S", str(path)],
-                cwd=tmp,
-                env={"PATH": os.environ.get("PATH", "")},
-                capture_output=True,
-                timeout=TEST_TIMEOUT_S,
-                preexec_fn=_limits if os.name == "posix" else None,  # noqa: PLW1509
-            )
+            code_ = proc.wait(timeout=TEST_TIMEOUT_S)
         except subprocess.TimeoutExpired:
-            return False
-    return proc.returncode == 0
+            code_ = None
+        finally:
+            if os.name == "posix":
+                with contextlib.suppress(ProcessLookupError, PermissionError):
+                    os.killpg(proc.pid, signal.SIGKILL)
+            proc.wait()
+    return code_ == PASS_CODE
 
 
 def visible_check(task: VisibleTask, answer: str) -> bool:

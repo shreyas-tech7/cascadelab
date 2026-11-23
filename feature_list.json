@@ -1,133 +1,133 @@
 [
- {
-  "id": "F01",
-  "area": "init",
-  "description": "Initializer: memory files, init.sh, LICENSE, .gitignore, secret scan hook",
-  "steps": [
-   "./init.sh"
-  ],
-  "passes": true
- },
- {
-  "id": "F02",
-  "area": "tasks",
-  "description": "180 frozen tasks (60 math, 60 JSON, 60 Python) with visible and hidden checks, 60/40 split",
-  "steps": [
-   "cascadelab make-tasks --check",
-   "pytest tests/test_tasks.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F03",
-  "area": "fakes",
-  "description": "Fake model pair; the cheap fake fails on a known subset; fixtures match the fake",
-  "steps": [
-   "pytest tests/test_fakes.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F04",
-  "area": "strategies",
-  "description": "Cheap only, strong only, cascade on check, cascade on agreement (k=5), learned router, oracle",
-  "steps": [
-   "pytest tests/test_strategies.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F05",
-  "area": "metrics",
-  "description": "Cost model from dated price table; Wilson intervals, paired bootstrap, p50/p95, escalation rate",
-  "steps": [
-   "pytest tests/test_metrics.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F06",
-  "area": "router",
-  "description": "Router trains on the development split only (Done means 5)",
-  "steps": [
-   "pytest tests/test_router.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F07",
-  "area": "leak",
-  "description": "No hidden check, gold answer or hidden test reaches strategy code (Done means 4)",
-  "steps": [
-   "pytest tests/test_leak.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F08",
-  "area": "replay",
-  "description": "Every strategy runs from fixtures and gives byte-identical results twice (Done means 1, 2)",
-  "steps": [
-   "pytest tests/test_replay.py",
-   "cascadelab run"
-  ],
-  "passes": true
- },
- {
-  "id": "F09",
-  "area": "record",
-  "description": "Resumable record mode against an OpenAI-compatible endpoint, tested on a local server; real run needs a key",
-  "steps": [
-   "pytest tests/test_record.py"
-  ],
-  "passes": true
- },
- {
-  "id": "F10",
-  "area": "report",
-  "description": "Static report docs/index.html with the cost and accuracy chart built from results (Done means 6)",
-  "steps": [
-   "cascadelab report --check",
-   "pytest tests/test_report.py"
-  ],
-  "passes": false
- },
- {
-  "id": "F11",
-  "area": "readme",
-  "description": "README table for every strategy on the held-out split with intervals, cost, latency, escalation, date, models, price date (Done means 3)",
-  "steps": [
-   "cascadelab readme --check"
-  ],
-  "passes": false
- },
- {
-  "id": "F12",
-  "area": "quality",
-  "description": "Quality bar: README parts, CI and badge, templates, CONTRIBUTING, CHANGELOG, topics, social preview, demo (Done means 7)",
-  "steps": [
-   "python scripts/check_links.py",
-   "actionlint",
-   ".venv/bin/cascadelab demo"
-  ],
-  "passes": false
- },
- {
-  "id": "F13",
-  "area": "study",
-  "description": "Study-later kit: WALKTHROUGH, INTERVIEW_QA, DECISIONS (Done means 7)",
-  "steps": [
-   "test -f docs/WALKTHROUGH.md && test -f docs/INTERVIEW_QA.md"
-  ],
-  "passes": false
- },
- {
-  "id": "F14",
-  "area": "release",
-  "description": "Release check and hand-off: RELEASE_CHECK, HUMAN_STEPS with release SHA, COWORK_PROMPT, GITHUB_ABOUT, topics (Done means 7)",
-  "steps": [
-   "test -f docs/RELEASE_CHECK.md && grep -q 'Release commit' docs/HUMAN_STEPS.md"
-  ],
-  "passes": false
- }
+  {
+    "id": "F01",
+    "area": "init",
+    "description": "Initializer: memory files, init.sh, LICENSE, .gitignore, secret scan hook",
+    "steps": [
+      "./init.sh"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F02",
+    "area": "tasks",
+    "description": "180 frozen tasks (60 math, 60 JSON, 60 Python) with visible and hidden checks, 60/40 split",
+    "steps": [
+      "cascadelab make-tasks --check",
+      "pytest tests/test_tasks.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F03",
+    "area": "fakes",
+    "description": "Fake model pair; the cheap fake fails on a known subset; fixtures match the fake",
+    "steps": [
+      "pytest tests/test_fakes.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F04",
+    "area": "strategies",
+    "description": "Cheap only, strong only, cascade on check, cascade on agreement (k=5), learned router, oracle",
+    "steps": [
+      "pytest tests/test_strategies.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F05",
+    "area": "metrics",
+    "description": "Cost model from dated price table; Wilson intervals, paired bootstrap, p50/p95, escalation rate",
+    "steps": [
+      "pytest tests/test_metrics.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F06",
+    "area": "router",
+    "description": "Router trains on the development split only (Done means 5)",
+    "steps": [
+      "pytest tests/test_router.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F07",
+    "area": "leak",
+    "description": "No hidden check, gold answer or hidden test reaches strategy code (Done means 4)",
+    "steps": [
+      "pytest tests/test_leak.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F08",
+    "area": "replay",
+    "description": "Every strategy runs from fixtures and gives byte-identical results twice (Done means 1, 2)",
+    "steps": [
+      "pytest tests/test_replay.py",
+      "cascadelab run"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F09",
+    "area": "record",
+    "description": "Resumable record mode against an OpenAI-compatible endpoint, tested on a local server; real run needs a key",
+    "steps": [
+      "pytest tests/test_record.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F10",
+    "area": "report",
+    "description": "Static report docs/index.html with the cost and accuracy chart built from results (Done means 6)",
+    "steps": [
+      "cascadelab report --check",
+      "pytest tests/test_report.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F11",
+    "area": "readme",
+    "description": "README table for every strategy on the held-out split with intervals, cost, latency, escalation, date, models, price date (Done means 3)",
+    "steps": [
+      "cascadelab readme --check"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F12",
+    "area": "quality",
+    "description": "Quality bar: README parts, CI and badge, templates, CONTRIBUTING, CHANGELOG, topics, social preview, demo (Done means 7)",
+    "steps": [
+      "python scripts/check_links.py",
+      "actionlint",
+      ".venv/bin/cascadelab demo"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F13",
+    "area": "study",
+    "description": "Study-later kit: WALKTHROUGH, INTERVIEW_QA, DECISIONS (Done means 7)",
+    "steps": [
+      "test -f docs/WALKTHROUGH.md && test -f docs/INTERVIEW_QA.md"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F14",
+    "area": "release",
+    "description": "Release check and hand-off: RELEASE_CHECK, HUMAN_STEPS with release SHA, COWORK_PROMPT, GITHUB_ABOUT, topics (Done means 7)",
+    "steps": [
+      "test -f docs/RELEASE_CHECK.md && grep -q 'Release commit' docs/HUMAN_STEPS.md"
+    ],
+    "passes": true
+  }
 ]

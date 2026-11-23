@@ -47,10 +47,11 @@ def cascade_check(task: VisibleTask, store: FixtureStore) -> Outcome:
 
 
 def cascade_agree(task: VisibleTask, store: FixtureStore, k: int = K) -> Outcome:
-    """Sample k cheap answers in parallel. Keep the first one if all k agree, else ask the strong model."""
+    """Sample k cheap answers in parallel. Keep the first one if all k agree and parse, else ask the strong model."""
     samples = [store.get("cheap", task, s) for s in range(k)]
     wait = max(c.latency_ms for c in samples)
-    if len({normalize(task, c.answer) for c in samples}) == 1:
+    keys = {normalize(task, c.answer) for c in samples}
+    if len(keys) == 1 and "none" not in keys:
         return Outcome(samples[0].answer, tuple(samples), False, wait)
     strong = store.get("strong", task)
     return Outcome(strong.answer, (*samples, strong), True, wait + strong.latency_ms)

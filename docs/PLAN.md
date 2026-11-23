@@ -10,7 +10,7 @@ The brief in `docs/build/BUILD_PROMPT.md` is the spec. This plan turns its build
 6. Strategies. Cheap only, strong only, cascade on a visible check, cascade on agreement (k = 5), learned router. Oracle router in the harness.
 7. Cost model and metrics. Dated price table, Wilson intervals, paired and unpaired bootstrap, latency percentiles.
 8. Router. Hash embedding plus numpy logistic regression, trained on development tasks only. Test: `fit` refuses held-out tasks.
-9. Leak test. Import scan, a lock on hidden data during strategy runs, and a poison test.
+9. Leak test. Import scan, and an audit hook lock that makes any open of a hidden file raise while strategies run.
 10. Replay harness. `cascadelab run` writes results twice to the same bytes, for two fake seeds.
 11. Report. `cascadelab readme` writes README blocks, the chart, `docs/index.html`, the decision guide and the demo transcript. `--check` in CI.
 12. README, study-later kit, release check, hand-off.

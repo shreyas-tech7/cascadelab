@@ -51,9 +51,14 @@ class Router:
     train_ids: list[str] = field(default_factory=list)
     embedder: str = ""
 
-    def fit(self, tasks: list[VisibleTask], cheap_failed: list[bool], dev_ids: set[str]) -> Router:
-        """Fit on development tasks. Labels say whether the cheap answer failed the hidden check."""
-        outside = [t.id for t in tasks if t.id not in dev_ids]
+    def fit(self, tasks: list[VisibleTask], cheap_failed: list[bool], split: dict[str, list[str]]) -> Router:
+        """Fit on development tasks. Labels say whether the cheap answer failed the hidden check.
+
+        Refuses any task that is not in the development split or that is in the held-out split,
+        so a caller that passes the wrong list, or a split file whose parts overlap, fails loudly.
+        """
+        dev, held = set(split["dev"]), set(split["heldout"])
+        outside = [t.id for t in tasks if t.id not in dev or t.id in held]
         if outside:
             raise ValueError(f"router may train on the development split only, got {outside[:3]}")
         x = embed([t.prompt for t in tasks])

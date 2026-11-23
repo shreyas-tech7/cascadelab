@@ -12,7 +12,7 @@ A router decides before any call. It looks at the task text and sends it to one 
 
 ## 3. Why does escalation on a checker work so well?
 
-Because a checker reads the answer, and most cheap failures are visible in the answer. A math answer that is not a number, JSON that breaks the schema, or code that fails an example test all fail the visible check. The cascade on a visible check escalates only 12.5% of tasks and lifts accuracy from 73.6% (cheap only) to 84.7%, at $0.0148 per 1,000 tasks against $0.0662 for strong only. The learned router escalates 33.3% and reaches 79.2%, because it guesses from the question alone.
+Because a checker reads the answer, and many cheap failures show in the answer. A math answer that is not a number, JSON that breaks the schema, or code that fails an example test all fail the visible check. On the held-out split the check caught 9 of the 19 cheap failures, and a strong call on those 9 tasks fixed 8 of them. The cascade on a visible check escalates only 12.5% of tasks and lifts accuracy from 73.6% (cheap only) to 84.7%, at $0.0148 per 1,000 tasks against $0.0662 for strong only. The learned router escalates 33.3% and reaches 79.2%, because it guesses from the question alone.
 
 The limit is the share of wrong answers that the check cannot see. In the fakes that share is a setting, `fakes.VISIBLE_SHARE`. Code that handles the examples but fails a hidden edge case passes the visible check, so the cascade keeps it.
 
@@ -36,7 +36,9 @@ Several things. Free tiers and rate limits change what a run really costs. Enter
 
 ## 8. How do you prove that no hidden data reaches strategy code?
 
-Three ways, all in `tests/test_leak.py`. First, an import scan: no strategy-side module imports `grader`, `fakes`, `taskgen` or `evaluate`. Second, a lock: while strategies run, `grader.load_hidden`, `grader.correct` and any open of `hidden.jsonl` or `world.jsonl` raise an error. Third, poison: the test replaces the hidden answers with garbage and checks that every strategy gives the same output. I checked that the tests fail by adding a grader call to `cascade_check`, and they did.
+Two ways, both in `tests/test_leak.py`. First, an import scan: no strategy-side module imports `grader`, `fakes`, `taskgen` or `evaluate`, and only `evaluate.py` imports the grader at all. Second, a lock built on a Python audit hook (`sys.addaudithook`). While strategies run, any open of `hidden.jsonl` or `world.jsonl` raises an error, whichever file API does it: `open`, `io.open`, `os.open`, `Path.read_text`, `Path.read_bytes` or `Path.open`. Starting any process other than the code test runner raises too. A parametrized test plugs a leaky strategy into `run_strategies` once for each of those routes and checks that every one is caught.
+
+An earlier version patched only `open` and `Path.read_text`. An outside check got past it with `read_bytes`, which is why the lock now sits at the audit hook level.
 
 ## 9. How does replay stay byte for byte?
 
@@ -56,7 +58,7 @@ Quite noisy. The held-out split has 72 tasks, so a single accuracy has an interv
 
 ## 13. How do code answers run safely?
 
-`checks.run_tests` writes the code and tests to a temp folder and runs `python -I -S` in a subprocess with a 5 second timeout, a CPU limit and a 512 MB memory limit. That stops runaway loops and memory blowups. It is not a full sandbox, and the README says so.
+`checks.run_tests` writes the code and tests to a temp folder and runs `python -I -S` in a subprocess with a 5 second timeout, a CPU limit, a 512 MB memory limit and no stdin. The child runs in its own process group, which is killed at the end, so a forked grandchild cannot linger. The program must end by exiting with a fixed code after the last test, so code that calls `exit(0)` early fails. It is not a full sandbox, and the README says so.
 
 ## 14. How would you put this in production?
 

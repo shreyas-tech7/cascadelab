@@ -60,3 +60,15 @@ def test_cost_block_says_more_when_a_strategy_costs_more():
 def test_usd_puts_the_sign_before_the_dollar():
     assert report.usd(-0.5) == "-$0.5000"
     assert report.usd(0.25) == "$0.2500"
+
+
+def test_each_strategy_has_its_own_marker_shape():
+    """Broken case: two strategies shared a shape, so the chart relied on color alone."""
+    assert len({report.SHAPES[n] for n in report.ORDER}) == len(report.ORDER)
+
+
+def test_decision_guide_states_the_agreement_break_even():
+    r = report.load(report.MAIN)
+    s = r["splits"]["heldout"]
+    ratio = s["cheap_only"]["cost_per_1000_usd"] / s["strong_only"]["cost_per_1000_usd"]
+    assert report.pct(1 - r["agreement_k"] * ratio) in report.decision_guide(r)

@@ -20,7 +20,7 @@ def test_fit_refuses_held_out_tasks():
     dev = [tasks[i] for i in split["dev"][:10]]
     leak = dev + [tasks[split["heldout"][0]]]
     with pytest.raises(ValueError, match="development split only"):
-        Router().fit(leak, [False] * len(leak), set(split["dev"]))
+        Router().fit(leak, [False] * len(leak), split)
 
 
 def test_trained_router_saw_exactly_the_dev_split():
@@ -61,3 +61,12 @@ def test_dev_labels_do_move_the_router(tmp_path):
 def test_hash_embed_is_stable_and_normalized():
     a, b = hash_embed("sum the numbers"), hash_embed("sum the numbers")
     assert np.array_equal(a, b) and abs(np.linalg.norm(a) - 1) < 1e-12
+
+
+def test_fit_refuses_a_split_whose_parts_overlap():
+    """Broken case: a split file that lists a task as both dev and held-out."""
+    tasks, split = load_visible(), load_split()
+    bad = {"dev": split["dev"], "heldout": split["heldout"] + [split["dev"][0]]}
+    dev = [tasks[i] for i in split["dev"][:5]]
+    with pytest.raises(ValueError, match="development split only"):
+        Router().fit(dev, [False] * len(dev), bad)

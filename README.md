@@ -73,7 +73,7 @@ A second, independent draw of the fake pair moves the numbers by a few points. T
 <!-- seeds:end -->
 
 <!-- router:start -->
-The learned router scores 90.7% on the development split it trained on and 79.2% on the held-out split. The gap is the overfit that the held-out split exists to show. It trained on 108 development tasks with the `hash-512` embedder.
+The learned router scores 90.7% on the development split it trained on and 79.2% on the held-out split. The splits differ in difficulty, so compare its gain over cheap only instead: +13.9 points on development and +5.6 on held-out. The gain shrinks on tasks it never saw, which is the overfit the held-out split exists to show. It trained on 108 development tasks with the `hash-512` embedder.
 <!-- router:end -->
 
 ## Cost per task
@@ -95,7 +95,7 @@ The price table is `data/prices.json`. It holds Groq's last public list prices f
 Why paired intervals:
 
 <!-- paired:start -->
-Pairing helps most when two strategies share outcomes. The cascade on a visible check and cheap only have the same outcome on 88.9% of held-out tasks. The paired 95% interval on their accuracy difference is 13.9 points wide, and resampling them separately gives 27.8 points. Against strong only the two share outcomes on 81.9% of tasks, and the widths are 19.4 paired and 19.4 unpaired. The fakes fail independently of each other, so pairing gains little there. Real models tend to fail on the same hard tasks, which makes pairing worth more.
+Pairing helps most when two strategies share outcomes. The cascade on a visible check and cheap only have the same outcome on 88.9% of held-out tasks. The paired 95% interval on their accuracy difference is 13.9 points wide, and resampling them separately gives 27.8 points. Against strong only the two share outcomes on 81.9% of tasks, and the widths are 19.4 paired and 19.4 unpaired. Pairing gains little there, because the fake models fail independently of each other. Real models tend to fail on the same hard tasks, which makes pairing worth more.
 <!-- paired:end -->
 
 ## Run it in 10 minutes
@@ -130,7 +130,7 @@ export GROQ_API_KEY=...        # or OPENROUTER_API_KEY with --provider openroute
 - The router uses a hash embedding, not a learned one, because the embedding model download was blocked. Set `CASCADELAB_FASTEMBED=1` where Hugging Face is reachable.
 - Latency is the sum of recorded call latencies (the slowest one for parallel samples). Time spent running checks is left out, so replay stays byte for byte.
 - Code answers run in a subprocess with a timeout, CPU and memory limits, in a temp folder. That is not a full sandbox.
-- Agreement on code compares normalized source text, so two correct programs written differently count as a disagreement.
+- Agreement on code compares normalized source text, so two correct programs written differently count as a disagreement. And if all samples agree, the agreement cascade keeps the answer even when it fails the visible example tests.
 - The tasks are synthetic and templated. They are easier to check than most real work.
 
 ## Glossary

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import sys
 from pathlib import Path
@@ -94,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--strong", default="llama-3.3-70b-versatile")
     p.add_argument("--k", type=int, default=K)
     p.add_argument("--limit", type=int, default=None, help="stop after this many new calls")
-    p.add_argument("--date", default="2026-11-23", help="recorded_on date for a new manifest")
+    p.add_argument("--date", default=str(datetime.date.today()), help="recorded_on date for a new manifest")
     p.add_argument("--out", default=None)
     p.set_defaults(fn=cmd_record)
     p = sub.add_parser("run", help="replay strategies from fixtures and write results/")

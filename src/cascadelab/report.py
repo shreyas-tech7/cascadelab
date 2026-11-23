@@ -18,6 +18,7 @@ from .evaluate import ORDER
 from .models import ROOT
 
 RESULTS = ROOT / "results"
+SPLIT_NAMES = {"heldout": "held-out", "dev": "development"}
 MAIN = "fake-seed0"
 SECOND = "fake-seed1"
 COLORS = {  # validated with the dataviz palette checker, light and dark
@@ -33,8 +34,8 @@ SHAPES = {
     "strong_only": "square",
     "cascade_check": "diamond",
     "cascade_agree": "triangle",
-    "learned_router": "circle",
-    "oracle_router": "square",
+    "learned_router": "down",
+    "oracle_router": "cross",
 }
 
 
@@ -146,23 +147,39 @@ def paired_block(r: dict) -> str:
         return 100 * (ci[1] - ci[0])
 
     a, b = r["pairing"]["cascade_check_vs_cheap_only"], r["pairing"]["cascade_check_vs_strong_only"]
+    gained = width(b["unpaired_ci95"]) - width(b["paired_ci95"]) > 1
+    tail = (
+        "Pairing narrows that interval too, because the two strategies fail on many of the same tasks."
+        if gained
+        else "Pairing gains little there, because the fake models fail independently of each other. Real models "
+        "tend to fail on the same hard tasks, which makes pairing worth more."
+    )
     return (
         f"Pairing helps most when two strategies share outcomes. The cascade on a visible check and cheap only "
         f"have the same outcome on {pct(a['same_outcome_share'])} of held-out tasks. The paired 95% interval on "
         f"their accuracy difference is {width(a['paired_ci95']):.1f} points wide, and resampling them separately "
         f"gives {width(a['unpaired_ci95']):.1f} points. Against strong only the two share outcomes on "
         f"{pct(b['same_outcome_share'])} of tasks, and the widths are {width(b['paired_ci95']):.1f} paired and "
-        f"{width(b['unpaired_ci95']):.1f} unpaired. The fakes fail independently of each other, so pairing "
-        f"gains little there. Real models tend to fail on the same hard tasks, which makes pairing worth more."
+        f"{width(b['unpaired_ci95']):.1f} unpaired. {tail}"
     )
 
 
 def router_block(r: dict) -> str:
     dev, held = r["splits"]["dev"]["learned_router"], r["splits"]["heldout"]["learned_router"]
+    gain = {
+        sp: r["splits"][sp]["learned_router"]["accuracy"] - r["splits"][sp]["cheap_only"]["accuracy"]
+        for sp in ("dev", "heldout")
+    }
+    verdict = (
+        "The gain shrinks on tasks it never saw, which is the overfit the held-out split exists to show."
+        if gain["heldout"] < gain["dev"]
+        else "The gain holds on tasks it never saw."
+    )
     return (
         f"The learned router scores {pct(dev['accuracy'])} on the development split it trained on and "
-        f"{pct(held['accuracy'])} on the held-out split. The gap is the overfit that the held-out split exists "
-        f"to show. It trained on {len(r['router']['train_ids'])} development tasks with the "
+        f"{pct(held['accuracy'])} on the held-out split. The splits differ in difficulty, so compare its gain over "
+        f"cheap only instead: {signed_pts(gain['dev'])} points on development and {signed_pts(gain['heldout'])} on "
+        f"held-out. {verdict} It trained on {len(r['router']['train_ids'])} development tasks with the "
         f"`{r['router']['embedder']}` embedder."
     )
 
@@ -231,7 +248,7 @@ def chart_svg(r: dict, split: str = "heldout") -> str:
     )
     out.append(
         f'<text class="ink" x="16" y="{top + ph / 2}" font-size="13" text-anchor="middle" '
-        f'transform="rotate(-90 16 {top + ph / 2})">Accuracy, held-out (95% CI)</text>'
+        f'transform="rotate(-90 16 {top + ph / 2})">Accuracy, {SPLIT_NAMES[split]} (95% CI)</text>'
     )
     for i, name in enumerate(ORDER):
         v = s[name]
@@ -253,10 +270,16 @@ def chart_svg(r: dict, split: str = "heldout") -> str:
             out.append(
                 f'<path class="ring s-{name}" d="M{x:.1f} {y - 8:.1f}L{x + 8:.1f} {y:.1f}L{x:.1f} {y + 8:.1f}L{x - 8:.1f} {y:.1f}Z"/>'
             )
-        else:
+        elif shape == "triangle":
             out.append(
                 f'<path class="ring s-{name}" d="M{x:.1f} {y - 8:.1f}L{x + 8:.1f} {y + 6:.1f}L{x - 8:.1f} {y + 6:.1f}Z"/>'
             )
+        elif shape == "down":
+            out.append(
+                f'<path class="ring s-{name}" d="M{x:.1f} {y + 8:.1f}L{x + 8:.1f} {y - 6:.1f}L{x - 8:.1f} {y - 6:.1f}Z"/>'
+            )
+        else:
+            out.append(f'<path class="ring s-{name}" d="M{x - 3:.1f} {y - 8:.1f}h6v5h5v6h-5v5h-6v-5h-5v-6h5Z"/>')
         out.append("</g>")
         ly = top + 14 + 22 * i
         out.append(f'<rect class="s-{name}" x="{left + pw + 18}" y="{ly - 9}" width="12" height="12" rx="3"/>')
@@ -329,6 +352,7 @@ and written by <code>cascadelab report</code> from the results files.</p>
 def decision_guide(r: dict) -> str:
     s = r["splits"]["heldout"]
     st = s["strong_only"]
+    ratio = s["cheap_only"]["cost_per_1000_usd"] / st["cost_per_1000_usd"]
     best = [n for n in ORDER if n not in ("strong_only", "oracle_router", "cheap_only")]
     cheaper_ok = [
         n
@@ -352,7 +376,9 @@ def decision_guide(r: dict) -> str:
         f"- A cascade on agreement needs no checker, but it pays for {r['agreement_k']} cheap samples on every task. "
         f"Here it cost {usd(s['cascade_agree']['cost_per_1000_usd'])} per 1,000 tasks, against "
         f"{usd(st['cost_per_1000_usd'])} for strong only, and escalated {pct(s['cascade_agree']['escalation_rate'])} "
-        "of tasks. It pays off only when the strong model costs many times more per call than k cheap calls.",
+        f"of tasks. One cheap call costs about {pct(ratio)} of one strong call here, so {r['agreement_k']} cheap "
+        f"samples cost {pct(r['agreement_k'] * ratio)} of a strong call. It saves money only when it escalates "
+        f"fewer than {pct(max(0.0, 1 - r['agreement_k'] * ratio))} of tasks.",
         f"- The learned router escalated {pct(s['learned_router']['escalation_rate'])} of tasks before any cheap "
         f"call and reached {pct(s['learned_router']['accuracy'])}. It needs labeled development data, and it "
         f"overfits: {pct(r['splits']['dev']['learned_router']['accuracy'])} on its own training split.",

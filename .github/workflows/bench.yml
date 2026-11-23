@@ -1,0 +1,50 @@
+name: Record
+
+# Record mode runs only by hand, because it calls a provider and uses free-tier limits.
+# Add GROQ_API_KEY or OPENROUTER_API_KEY as a repository secret first.
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: "groq or openrouter"
+        required: true
+        default: groq
+      cheap:
+        description: "cheap model name"
+        required: true
+      strong:
+        description: "strong model name"
+        required: true
+      limit:
+        description: "stop after this many new calls"
+        required: true
+        default: "500"
+
+permissions:
+  contents: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PROVIDER: ${{ inputs.provider }}
+      CHEAP: ${{ inputs.cheap }}
+      STRONG: ${{ inputs.strong }}
+      LIMIT: ${{ inputs.limit }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: astral-sh/setup-uv@v6
+      - run: ./init.sh
+      - name: Record (resumes from the committed fixtures)
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: .venv/bin/cascadelab record --provider "$PROVIDER" --cheap "$CHEAP" --strong "$STRONG" --limit "$LIMIT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fixtures
+          path: fixtures/

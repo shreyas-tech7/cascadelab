@@ -1,0 +1,9 @@
+# Default rules, plus one narrow allowlist: fixture request keys are SHA-256 hashes of
+# (model, messages, temperature, sample), not secrets.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "fixture request hashes"
+regexTarget = "match"
+regexes = ['''^key": "[0-9a-f]{20,64}"?$''']

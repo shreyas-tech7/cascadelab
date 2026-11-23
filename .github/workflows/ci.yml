@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    # Skip pushes that change only hand-written docs. README.md, docs/index.html and the
+    # generated docs still run, because `readme --check` covers them.
+    paths:
+      - "**"
+      - "!**.md"
+      - "!docs/**"
+      - "README.md"
+      - "docs/index.html"
+      - "docs/chart.svg"
+      - "docs/DECISION_GUIDE.md"
+      - "docs/DEMO.md"
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: astral-sh/setup-uv@v6
+      - name: init.sh (install, lint, link check, frozen tasks, offline tests)
+        run: ./init.sh
+      - name: Replay is byte for byte
+        run: |
+          .venv/bin/cascadelab run
+          git diff --exit-code results/
+      - name: Generated files are up to date
+        run: .venv/bin/cascadelab readme --check
+      - name: Demo runs
+        run: .venv/bin/cascadelab demo

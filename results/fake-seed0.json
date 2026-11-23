@@ -1,0 +1,532 @@
+{
+ "agreement_k": 5,
+ "bootstrap": {
+  "reps": 2000,
+  "seed": 0
+ },
+ "fixtures": "fake-seed0",
+ "manifest": {
+  "cheap": "fake-cheap",
+  "note": "simulated models, not real LLM output",
+  "provider": "fake",
+  "recorded_on": "2026-11-23",
+  "seed": 0,
+  "strong": "fake-strong"
+ },
+ "pairing": {
+  "cascade_check_vs_cheap_only": {
+   "diff": 0.111111,
+   "paired_ci95": [
+    0.041667,
+    0.180556
+   ],
+   "same_outcome_share": 0.888889,
+   "unpaired_ci95": [
+    -0.027778,
+    0.25
+   ]
+  },
+  "cascade_check_vs_strong_only": {
+   "diff": -0.097222,
+   "paired_ci95": [
+    -0.194444,
+    0.0
+   ],
+   "same_outcome_share": 0.819444,
+   "unpaired_ci95": [
+    -0.194444,
+    0.0
+   ]
+  }
+ },
+ "priced_as": {
+  "fake-cheap": "llama-3.1-8b-instant on Groq",
+  "fake-strong": "llama-3.3-70b-versatile on Groq"
+ },
+ "prices_checked_on": "2026-11-23",
+ "router": {
+  "embedder": "hash-512",
+  "threshold": 0.5,
+  "train_ids": [
+   "code-000",
+   "code-001",
+   "code-002",
+   "code-003",
+   "code-005",
+   "code-007",
+   "code-010",
+   "code-011",
+   "code-012",
+   "code-015",
+   "code-016",
+   "code-017",
+   "code-018",
+   "code-020",
+   "code-025",
+   "code-027",
+   "code-028",
+   "code-030",
+   "code-034",
+   "code-035",
+   "code-037",
+   "code-038",
+   "code-039",
+   "code-040",
+   "code-043",
+   "code-044",
+   "code-045",
+   "code-046",
+   "code-047",
+   "code-048",
+   "code-050",
+   "code-051",
+   "code-052",
+   "code-054",
+   "code-056",
+   "code-059",
+   "json-001",
+   "json-002",
+   "json-003",
+   "json-005",
+   "json-006",
+   "json-007",
+   "json-008",
+   "json-010",
+   "json-011",
+   "json-012",
+   "json-014",
+   "json-015",
+   "json-016",
+   "json-017",
+   "json-018",
+   "json-019",
+   "json-020",
+   "json-025",
+   "json-027",
+   "json-029",
+   "json-030",
+   "json-031",
+   "json-032",
+   "json-033",
+   "json-034",
+   "json-038",
+   "json-039",
+   "json-043",
+   "json-045",
+   "json-046",
+   "json-047",
+   "json-050",
+   "json-051",
+   "json-052",
+   "json-053",
+   "json-057",
+   "math-001",
+   "math-002",
+   "math-003",
+   "math-007",
+   "math-009",
+   "math-011",
+   "math-013",
+   "math-014",
+   "math-019",
+   "math-021",
+   "math-022",
+   "math-023",
+   "math-025",
+   "math-026",
+   "math-027",
+   "math-029",
+   "math-031",
+   "math-033",
+   "math-034",
+   "math-035",
+   "math-036",
+   "math-037",
+   "math-039",
+   "math-040",
+   "math-041",
+   "math-042",
+   "math-044",
+   "math-048",
+   "math-050",
+   "math-051",
+   "math-053",
+   "math-054",
+   "math-056",
+   "math-057",
+   "math-058",
+   "math-059"
+  ]
+ },
+ "splits": {
+  "dev": {
+   "cascade_agree": {
+    "accuracy": 0.935185,
+    "accuracy_by_family": {
+     "code": 0.916667,
+     "json": 0.916667,
+     "math": 0.972222
+    },
+    "accuracy_ci95": [
+     0.872224,
+     0.968252
+    ],
+    "calls_per_task": 5.490741,
+    "correct": 101,
+    "cost_per_1000_usd": 0.059321,
+    "escalation_rate": 0.490741,
+    "label": "Cascade on agreement (k=5)",
+    "latency_p50_ms": 330.0,
+    "latency_p95_ms": 1403.7,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.083333,
+     0.037037,
+     0.138889
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.006053,
+     -0.012624,
+     0.000595
+    ]
+   },
+   "cascade_check": {
+    "accuracy": 0.824074,
+    "accuracy_by_family": {
+     "code": 0.694444,
+     "json": 0.944444,
+     "math": 0.833333
+    },
+    "accuracy_ci95": [
+     0.741505,
+     0.884381
+    ],
+    "calls_per_task": 1.083333,
+    "correct": 89,
+    "cost_per_1000_usd": 0.011304,
+    "escalation_rate": 0.083333,
+    "label": "Cascade on visible check",
+    "latency_p50_ms": 250.0,
+    "latency_p95_ms": 924.95,
+    "n": 108,
+    "vs_strong_accuracy": [
+     -0.027778,
+     -0.12963,
+     0.064815
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.05407,
+     -0.059895,
+     -0.048461
+    ]
+   },
+   "cheap_only": {
+    "accuracy": 0.768519,
+    "accuracy_by_family": {
+     "code": 0.638889,
+     "json": 0.888889,
+     "math": 0.777778
+    },
+    "accuracy_ci95": [
+     0.680585,
+     0.838006
+    ],
+    "calls_per_task": 1.0,
+    "correct": 83,
+    "cost_per_1000_usd": 0.00582,
+    "escalation_rate": 0.0,
+    "label": "Cheap model only",
+    "latency_p50_ms": 244.5,
+    "latency_p95_ms": 317.25,
+    "n": 108,
+    "vs_strong_accuracy": [
+     -0.083333,
+     -0.185185,
+     0.018519
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.059554,
+     -0.064306,
+     -0.054633
+    ]
+   },
+   "learned_router": {
+    "accuracy": 0.907407,
+    "accuracy_by_family": {
+     "code": 0.888889,
+     "json": 0.888889,
+     "math": 0.944444
+    },
+    "accuracy_ci95": [
+     0.837901,
+     0.948927
+    ],
+    "calls_per_task": 1.0,
+    "correct": 98,
+    "cost_per_1000_usd": 0.026234,
+    "escalation_rate": 0.342593,
+    "label": "Learned router",
+    "latency_p50_ms": 277.5,
+    "latency_p95_ms": 1041.55,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.055556,
+     -0.018519,
+     0.12963
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.039141,
+     -0.045839,
+     -0.032355
+    ]
+   },
+   "oracle_router": {
+    "accuracy": 0.962963,
+    "accuracy_by_family": {
+     "code": 0.916667,
+     "json": 1.0,
+     "math": 0.972222
+    },
+    "accuracy_ci95": [
+     0.908618,
+     0.985504
+    ],
+    "calls_per_task": 1.0,
+    "correct": 104,
+    "cost_per_1000_usd": 0.020135,
+    "escalation_rate": 0.231481,
+    "label": "Oracle router (upper bound)",
+    "latency_p50_ms": 258.0,
+    "latency_p95_ms": 1009.7,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.111111,
+     0.055556,
+     0.175926
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.045239,
+     -0.05156,
+     -0.039075
+    ]
+   },
+   "strong_only": {
+    "accuracy": 0.851852,
+    "accuracy_by_family": {
+     "code": 0.861111,
+     "json": 0.75,
+     "math": 0.944444
+    },
+    "accuracy_ci95": [
+     0.772829,
+     0.906705
+    ],
+    "calls_per_task": 1.0,
+    "correct": 92,
+    "cost_per_1000_usd": 0.065374,
+    "escalation_rate": 0.0,
+    "label": "Strong model only",
+    "latency_p50_ms": 822.0,
+    "latency_p95_ms": 1118.95,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "heldout": {
+   "cascade_agree": {
+    "accuracy": 0.972222,
+    "accuracy_by_family": {
+     "code": 0.958333,
+     "json": 0.958333,
+     "math": 1.0
+    },
+    "accuracy_ci95": [
+     0.904258,
+     0.992349
+    ],
+    "calls_per_task": 5.680556,
+    "correct": 70,
+    "cost_per_1000_usd": 0.073803,
+    "escalation_rate": 0.680556,
+    "label": "Cascade on agreement (k=5)",
+    "latency_p50_ms": 781.5,
+    "latency_p95_ms": 1381.15,
+    "n": 72,
+    "vs_strong_accuracy": [
+     0.027778,
+     0.0,
+     0.069444
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.0076,
+     -0.000303,
+     0.0157
+    ]
+   },
+   "cascade_check": {
+    "accuracy": 0.847222,
+    "accuracy_by_family": {
+     "code": 0.791667,
+     "json": 0.916667,
+     "math": 0.833333
+    },
+    "accuracy_ci95": [
+     0.746777,
+     0.912493
+    ],
+    "calls_per_task": 1.125,
+    "correct": 61,
+    "cost_per_1000_usd": 0.014811,
+    "escalation_rate": 0.125,
+    "label": "Cascade on visible check",
+    "latency_p50_ms": 259.0,
+    "latency_p95_ms": 1179.15,
+    "n": 72,
+    "vs_strong_accuracy": [
+     -0.097222,
+     -0.194444,
+     0.0
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.051392,
+     -0.058538,
+     -0.044107
+    ]
+   },
+   "cheap_only": {
+    "accuracy": 0.736111,
+    "accuracy_by_family": {
+     "code": 0.708333,
+     "json": 0.791667,
+     "math": 0.708333
+    },
+    "accuracy_ci95": [
+     0.624241,
+     0.824062
+    ],
+    "calls_per_task": 1.0,
+    "correct": 53,
+    "cost_per_1000_usd": 0.005899,
+    "escalation_rate": 0.0,
+    "label": "Cheap model only",
+    "latency_p50_ms": 236.5,
+    "latency_p95_ms": 330.85,
+    "n": 72,
+    "vs_strong_accuracy": [
+     -0.208333,
+     -0.333333,
+     -0.097222
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.060304,
+     -0.066269,
+     -0.054263
+    ]
+   },
+   "learned_router": {
+    "accuracy": 0.791667,
+    "accuracy_by_family": {
+     "code": 0.833333,
+     "json": 0.791667,
+     "math": 0.75
+    },
+    "accuracy_ci95": [
+     0.684307,
+     0.869479
+    ],
+    "calls_per_task": 1.0,
+    "correct": 57,
+    "cost_per_1000_usd": 0.026821,
+    "escalation_rate": 0.333333,
+    "label": "Learned router",
+    "latency_p50_ms": 281.0,
+    "latency_p95_ms": 1149.95,
+    "n": 72,
+    "vs_strong_accuracy": [
+     -0.152778,
+     -0.25,
+     -0.069444
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.039382,
+     -0.04775,
+     -0.031085
+    ]
+   },
+   "oracle_router": {
+    "accuracy": 0.986111,
+    "accuracy_by_family": {
+     "code": 1.0,
+     "json": 0.958333,
+     "math": 1.0
+    },
+    "accuracy_ci95": [
+     0.925434,
+     0.997544
+    ],
+    "calls_per_task": 1.0,
+    "correct": 71,
+    "cost_per_1000_usd": 0.021807,
+    "escalation_rate": 0.263889,
+    "label": "Oracle router (upper bound)",
+    "latency_p50_ms": 270.5,
+    "latency_p95_ms": 1080.0,
+    "n": 72,
+    "vs_strong_accuracy": [
+     0.041667,
+     0.0,
+     0.097222
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.044395,
+     -0.052047,
+     -0.036321
+    ]
+   },
+   "strong_only": {
+    "accuracy": 0.944444,
+    "accuracy_by_family": {
+     "code": 0.916667,
+     "json": 0.916667,
+     "math": 1.0
+    },
+    "accuracy_ci95": [
+     0.86568,
+     0.978186
+    ],
+    "calls_per_task": 1.0,
+    "correct": 68,
+    "cost_per_1000_usd": 0.066203,
+    "escalation_rate": 0.0,
+    "label": "Strong model only",
+    "latency_p50_ms": 846.5,
+    "latency_p95_ms": 1174.15,
+    "n": 72,
+    "vs_strong_accuracy": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  }
+ },
+ "task_files_sha256": {
+  "hidden.jsonl": "4fcf57ac7d70aaaf82316d3e5712f7918f91f93d0005cdfcc9cf2ff78cf9163a",
+  "split.json": "b4cafa8cc0e2fb95dffec7d91ea77363cd1ab2fe5462b6d6244562eb079c6472",
+  "visible.jsonl": "44653ce8ed659f8e08f91b1b58767c46e31007c66056d2267a0548f6f57f6423"
+ }
+}

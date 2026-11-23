@@ -1,0 +1,15 @@
+{
+  "checked_on": "2026-11-23",
+  "currency": "USD",
+  "unit": "per 1,000,000 tokens",
+  "use": "comparison only. The runs in this repo cost $0 (offline fixtures and free tiers).",
+  "source": "https://usagepricing.com/ai-token-pricing/compare/llama-3-1-8b-groq-vs-llama-3-3-70b-groq",
+  "source_date": "Updated October 2026",
+  "caveat": "A record dated 2026-08-26 (https://www.usagepricing.com/blueprint/activity/groq-2026-08-26-llama-enterprise-only) says Groq moved both models to enterprise pricing, so these are the last public list prices, not a current quote.",
+  "models": {
+    "fake-cheap": {"priced_as": "llama-3.1-8b-instant on Groq", "input": 0.05, "output": 0.08},
+    "fake-strong": {"priced_as": "llama-3.3-70b-versatile on Groq", "input": 0.59, "output": 0.79},
+    "llama-3.1-8b-instant": {"priced_as": "llama-3.1-8b-instant on Groq", "input": 0.05, "output": 0.08},
+    "llama-3.3-70b-versatile": {"priced_as": "llama-3.3-70b-versatile on Groq", "input": 0.59, "output": 0.79}
+  }
+}

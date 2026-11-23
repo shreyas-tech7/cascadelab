@@ -1,0 +1,180 @@
+{"gold": 44, "id": "math-000"}
+{"gold": 292, "id": "math-001"}
+{"gold": 20, "id": "math-002"}
+{"gold": 108, "id": "math-003"}
+{"gold": 48, "id": "math-004"}
+{"gold": 27, "id": "math-005"}
+{"gold": 68, "id": "math-006"}
+{"gold": 54, "id": "math-007"}
+{"gold": 220, "id": "math-008"}
+{"gold": 74, "id": "math-009"}
+{"gold": 2, "id": "math-010"}
+{"gold": 338, "id": "math-011"}
+{"gold": 10, "id": "math-012"}
+{"gold": 72, "id": "math-013"}
+{"gold": 45, "id": "math-014"}
+{"gold": 23, "id": "math-015"}
+{"gold": 52, "id": "math-016"}
+{"gold": 145, "id": "math-017"}
+{"gold": 88, "id": "math-018"}
+{"gold": 61, "id": "math-019"}
+{"gold": 5, "id": "math-020"}
+{"gold": 230, "id": "math-021"}
+{"gold": 25, "id": "math-022"}
+{"gold": 124, "id": "math-023"}
+{"gold": 40, "id": "math-024"}
+{"gold": 21, "id": "math-025"}
+{"gold": 144, "id": "math-026"}
+{"gold": 128, "id": "math-027"}
+{"gold": 72, "id": "math-028"}
+{"gold": 57, "id": "math-029"}
+{"gold": 44, "id": "math-030"}
+{"gold": 184, "id": "math-031"}
+{"gold": 30, "id": "math-032"}
+{"gold": 150, "id": "math-033"}
+{"gold": 180, "id": "math-034"}
+{"gold": 30, "id": "math-035"}
+{"gold": 198, "id": "math-036"}
+{"gold": 86, "id": "math-037"}
+{"gold": 49, "id": "math-038"}
+{"gold": 47, "id": "math-039"}
+{"gold": 11, "id": "math-040"}
+{"gold": 228, "id": "math-041"}
+{"gold": 26, "id": "math-042"}
+{"gold": 156, "id": "math-043"}
+{"gold": 60, "id": "math-044"}
+{"gold": 29, "id": "math-045"}
+{"gold": 30, "id": "math-046"}
+{"gold": 48, "id": "math-047"}
+{"gold": 102, "id": "math-048"}
+{"gold": 54, "id": "math-049"}
+{"gold": 3, "id": "math-050"}
+{"gold": 433, "id": "math-051"}
+{"gold": 21, "id": "math-052"}
+{"gold": 182, "id": "math-053"}
+{"gold": 20, "id": "math-054"}
+{"gold": 31, "id": "math-055"}
+{"gold": 24, "id": "math-056"}
+{"gold": 39, "id": "math-057"}
+{"gold": 60, "id": "math-058"}
+{"gold": 61, "id": "math-059"}
+{"gold": {"city": "Perth", "customer": "Tariq Berg", "order_id": "A2213", "quantity": 6, "unit_price": 6.53}, "id": "json-000"}
+{"gold": {"age": 53, "city": "Perth", "email": "mia4@mail.test", "name": "Mia"}, "id": "json-001"}
+{"gold": {"date": "2026-12-19", "room": "Room 22", "start_hour": 13, "title": "Design sync"}, "id": "json-002"}
+{"gold": {"destination": "Perth", "flight_number": "LB707", "origin": "Osaka", "price": 108.69, "refundable": false, "seats": 2}, "id": "json-003"}
+{"gold": {"in_stock": true, "name": "Camp stove", "sku": "SKU-44204", "tags": ["new", "outdoor", "steel"], "weight_kg": 7.1}, "id": "json-004"}
+{"gold": {"currency": "EUR", "due_date": "2026-07-28", "invoice_id": "INV-201", "items_count": 17, "paid": true, "total": 3649.93, "vendor": "Blue Supply"}, "id": "json-005"}
+{"gold": {"city": "Leeds", "customer": "Jon Berg", "order_id": "A2908", "quantity": 7, "unit_price": 10.05}, "id": "json-006"}
+{"gold": {"age": 42, "city": "Lagos", "email": "ada97@mail.test", "name": "Ada"}, "id": "json-007"}
+{"gold": {"date": "2026-01-03", "room": "Room 22", "start_hour": 14, "title": "Design sync"}, "id": "json-008"}
+{"gold": {"destination": "Leeds", "flight_number": "LB321", "origin": "Denver", "price": 210.71, "refundable": false, "seats": 4}, "id": "json-009"}
+{"gold": {"in_stock": true, "name": "Camp stove", "sku": "SKU-30038", "tags": ["kitchen", "outdoor", "steel"], "weight_kg": 2.2}, "id": "json-010"}
+{"gold": {"currency": "EUR", "due_date": "2026-07-16", "invoice_id": "INV-886", "items_count": 5, "paid": true, "total": 2729.68, "vendor": "Iron Supply"}, "id": "json-011"}
+{"gold": {"city": "Perth", "customer": "Jon Berg", "order_id": "A9633", "quantity": 5, "unit_price": 20.09}, "id": "json-012"}
+{"gold": {"age": 42, "city": "Leeds", "email": "dana6@mail.test", "name": "Dana"}, "id": "json-013"}
+{"gold": {"date": "2026-04-02", "room": "Room 21", "start_hour": 14, "title": "Hiring panel"}, "id": "json-014"}
+{"gold": {"destination": "Leeds", "flight_number": "LB946", "origin": "Osaka", "price": 197.02, "refundable": true, "seats": 3}, "id": "json-015"}
+{"gold": {"in_stock": true, "name": "Camp stove", "sku": "SKU-80551", "tags": ["outdoor", "steel"], "weight_kg": 1.5}, "id": "json-016"}
+{"gold": {"currency": "GBP", "due_date": "2026-02-11", "invoice_id": "INV-988", "items_count": 26, "paid": false, "total": 2743.48, "vendor": "Blue Supply"}, "id": "json-017"}
+{"gold": {"city": "Denver", "customer": "Lena Ortiz", "order_id": "A9393", "quantity": 7, "unit_price": 14.65}, "id": "json-018"}
+{"gold": {"age": 33, "city": "Oslo", "email": "dana24@mail.test", "name": "Dana"}, "id": "json-019"}
+{"gold": {"date": "2026-04-02", "room": "Room 27", "start_hour": 14, "title": "Launch prep"}, "id": "json-020"}
+{"gold": {"destination": "Osaka", "flight_number": "TR142", "origin": "Lagos", "price": 571.99, "refundable": true, "seats": 3}, "id": "json-021"}
+{"gold": {"in_stock": true, "name": "Rain jacket", "sku": "SKU-27013", "tags": ["new"], "weight_kg": 5.4}, "id": "json-022"}
+{"gold": {"currency": "EUR", "due_date": "2026-06-19", "invoice_id": "INV-870", "items_count": 39, "paid": false, "total": 6434.34, "vendor": "Iron Supply"}, "id": "json-023"}
+{"gold": {"city": "Pune", "customer": "Ines Berg", "order_id": "A4900", "quantity": 10, "unit_price": 5.99}, "id": "json-024"}
+{"gold": {"age": 70, "city": "Perth", "email": "yuki90@mail.test", "name": "Yuki"}, "id": "json-025"}
+{"gold": {"date": "2026-07-17", "room": "Room 2", "start_hour": 17, "title": "Launch prep"}, "id": "json-026"}
+{"gold": {"destination": "Lagos", "flight_number": "LB333", "origin": "Lima", "price": 465.79, "refundable": false, "seats": 1}, "id": "json-027"}
+{"gold": {"in_stock": true, "name": "Water bottle", "sku": "SKU-21017", "tags": ["new", "sale"], "weight_kg": 3.6}, "id": "json-028"}
+{"gold": {"currency": "EUR", "due_date": "2026-11-08", "invoice_id": "INV-891", "items_count": 36, "paid": true, "total": 714.08, "vendor": "Iron Supply"}, "id": "json-029"}
+{"gold": {"city": "Quito", "customer": "Kofi Kim", "order_id": "A8758", "quantity": 9, "unit_price": 8.19}, "id": "json-030"}
+{"gold": {"age": 29, "city": "Denver", "email": "jon43@mail.test", "name": "Jon"}, "id": "json-031"}
+{"gold": {"date": "2026-11-08", "room": "Room 23", "start_hour": 14, "title": "Design sync"}, "id": "json-032"}
+{"gold": {"destination": "Denver", "flight_number": "QX583", "origin": "Quito", "price": 141.21, "refundable": false, "seats": 5}, "id": "json-033"}
+{"gold": {"in_stock": true, "name": "Camp stove", "sku": "SKU-84199", "tags": ["new"], "weight_kg": 2.7}, "id": "json-034"}
+{"gold": {"currency": "USD", "due_date": "2026-04-03", "invoice_id": "INV-699", "items_count": 26, "paid": true, "total": 2454.17, "vendor": "North Supply"}, "id": "json-035"}
+{"gold": {"city": "Quito", "customer": "Omar Berg", "order_id": "A4293", "quantity": 8, "unit_price": 7.4}, "id": "json-036"}
+{"gold": {"age": 26, "city": "Denver", "email": "ada70@mail.test", "name": "Ada"}, "id": "json-037"}
+{"gold": {"date": "2026-10-25", "room": "Room 10", "start_hour": 16, "title": "Hiring panel"}, "id": "json-038"}
+{"gold": {"destination": "Osaka", "flight_number": "LB919", "origin": "Austin", "price": 518.68, "refundable": false, "seats": 3}, "id": "json-039"}
+{"gold": {"in_stock": false, "name": "Camp stove", "sku": "SKU-57890", "tags": ["steel", "outdoor", "new"], "weight_kg": 1.8}, "id": "json-040"}
+{"gold": {"currency": "USD", "due_date": "2026-04-03", "invoice_id": "INV-484", "items_count": 39, "paid": false, "total": 4907.83, "vendor": "North Supply"}, "id": "json-041"}
+{"gold": {"city": "Perth", "customer": "Omar Berg", "order_id": "A6117", "quantity": 6, "unit_price": 1.04}, "id": "json-042"}
+{"gold": {"age": 31, "city": "Oslo", "email": "yuki5@mail.test", "name": "Yuki"}, "id": "json-043"}
+{"gold": {"date": "2026-01-26", "room": "Room 3", "start_hour": 12, "title": "Design sync"}, "id": "json-044"}
+{"gold": {"destination": "Oslo", "flight_number": "TR248", "origin": "Denver", "price": 396.25, "refundable": false, "seats": 5}, "id": "json-045"}
+{"gold": {"in_stock": true, "name": "Desk lamp", "sku": "SKU-49638", "tags": ["eco", "kitchen", "steel"], "weight_kg": 3.6}, "id": "json-046"}
+{"gold": {"currency": "USD", "due_date": "2026-10-22", "invoice_id": "INV-545", "items_count": 29, "paid": true, "total": 8585.16, "vendor": "Blue Supply"}, "id": "json-047"}
+{"gold": {"city": "Lima", "customer": "Ines Ortiz", "order_id": "A7169", "quantity": 8, "unit_price": 16.02}, "id": "json-048"}
+{"gold": {"age": 62, "city": "Osaka", "email": "ravi73@mail.test", "name": "Ravi"}, "id": "json-049"}
+{"gold": {"date": "2026-01-05", "room": "Room 15", "start_hour": 10, "title": "Budget review"}, "id": "json-050"}
+{"gold": {"destination": "Quito", "flight_number": "LB934", "origin": "Perth", "price": 426.0, "refundable": true, "seats": 3}, "id": "json-051"}
+{"gold": {"in_stock": true, "name": "Desk lamp", "sku": "SKU-53321", "tags": ["new"], "weight_kg": 5.9}, "id": "json-052"}
+{"gold": {"currency": "EUR", "due_date": "2026-06-27", "invoice_id": "INV-159", "items_count": 18, "paid": true, "total": 6173.7, "vendor": "Iron Supply"}, "id": "json-053"}
+{"gold": {"city": "Perth", "customer": "Ravi Berg", "order_id": "A7499", "quantity": 11, "unit_price": 1.59}, "id": "json-054"}
+{"gold": {"age": 36, "city": "Pune", "email": "yuki7@mail.test", "name": "Yuki"}, "id": "json-055"}
+{"gold": {"date": "2026-02-11", "room": "Room 14", "start_hour": 16, "title": "Design sync"}, "id": "json-056"}
+{"gold": {"destination": "Quito", "flight_number": "QX482", "origin": "Denver", "price": 94.14, "refundable": false, "seats": 4}, "id": "json-057"}
+{"gold": {"in_stock": true, "name": "Water bottle", "sku": "SKU-12048", "tags": ["new", "outdoor", "steel"], "weight_kg": 6.3}, "id": "json-058"}
+{"gold": {"currency": "EUR", "due_date": "2026-07-04", "invoice_id": "INV-605", "items_count": 36, "paid": false, "total": 8820.54, "vendor": "North Supply"}, "id": "json-059"}
+{"hidden_tests": ["assert sum_divisible([]) == 0", "assert sum_divisible([-2, 2]) == 0", "assert sum_divisible([-4, 1]) == -4", "assert sum_divisible([0, 2, 10]) == 12", "assert sum_divisible([3]) == 0"], "id": "code-000"}
+{"hidden_tests": ["assert sum_divisible([]) == 0", "assert sum_divisible([-3, 3]) == 0", "assert sum_divisible([-6, 1]) == -6", "assert sum_divisible([0, 3, 15]) == 18", "assert sum_divisible([4]) == 0"], "id": "code-001"}
+{"hidden_tests": ["assert sum_divisible([]) == 0", "assert sum_divisible([-4, 4]) == 0", "assert sum_divisible([-8, 1]) == -8", "assert sum_divisible([0, 4, 20]) == 24", "assert sum_divisible([5]) == 0"], "id": "code-002"}
+{"hidden_tests": ["assert sum_divisible([]) == 0", "assert sum_divisible([-5, 5]) == 0", "assert sum_divisible([-10, 1]) == -10", "assert sum_divisible([0, 5, 25]) == 30", "assert sum_divisible([6]) == 0"], "id": "code-003"}
+{"hidden_tests": ["assert sum_divisible([]) == 0", "assert sum_divisible([-7, 7]) == 0", "assert sum_divisible([-14, 1]) == -14", "assert sum_divisible([0, 7, 35]) == 42", "assert sum_divisible([8]) == 0"], "id": "code-004"}
+{"hidden_tests": ["assert count_long_words('') == 0", "assert count_long_words('aaa\\tbbb') == 2", "assert count_long_words('qqq\\nr') == 1", "assert count_long_words('aa') == 0", "assert count_long_words('  ') == 0"], "id": "code-005"}
+{"hidden_tests": ["assert count_long_words('') == 0", "assert count_long_words('aaaa\\tbbbb') == 2", "assert count_long_words('qqqq\\nr') == 1", "assert count_long_words('aaa') == 0", "assert count_long_words('  ') == 0"], "id": "code-006"}
+{"hidden_tests": ["assert count_long_words('') == 0", "assert count_long_words('aaaaa\\tbbbbb') == 2", "assert count_long_words('qqqqq\\nr') == 1", "assert count_long_words('aaaa') == 0", "assert count_long_words('  ') == 0"], "id": "code-007"}
+{"hidden_tests": ["assert count_long_words('') == 0", "assert count_long_words('aaaaaa\\tbbbbbb') == 2", "assert count_long_words('qqqqqq\\nr') == 1", "assert count_long_words('aaaaa') == 0", "assert count_long_words('  ') == 0"], "id": "code-008"}
+{"hidden_tests": ["assert count_long_words('') == 0", "assert count_long_words('aaaaaaa\\tbbbbbbb') == 2", "assert count_long_words('qqqqqqq\\nr') == 1", "assert count_long_words('aaaaaa') == 0", "assert count_long_words('  ') == 0"], "id": "code-009"}
+{"hidden_tests": ["assert kth_largest([5, 5, 5]) == None", "assert kth_largest([]) == None", "assert kth_largest([9, 9, 1, 2]) == 2", "assert kth_largest([2, 1]) == 1", "assert kth_largest([1]) == None"], "id": "code-010"}
+{"hidden_tests": ["assert kth_largest([5, 5, 5, 5]) == None", "assert kth_largest([]) == None", "assert kth_largest([9, 9, 1, 2, 3]) == 2", "assert kth_largest([3, 2, 1]) == 1", "assert kth_largest([1]) == None"], "id": "code-011"}
+{"hidden_tests": ["assert kth_largest([5, 5, 5, 5, 5]) == None", "assert kth_largest([]) == None", "assert kth_largest([9, 9, 1, 2, 3, 4]) == 2", "assert kth_largest([4, 3, 2, 1]) == 1", "assert kth_largest([1]) == None"], "id": "code-012"}
+{"hidden_tests": ["assert kth_largest([5, 5, 5, 5, 5, 5]) == None", "assert kth_largest([]) == None", "assert kth_largest([9, 9, 1, 2, 3, 4, 5]) == 2", "assert kth_largest([5, 4, 3, 2, 1]) == 1", "assert kth_largest([1]) == None"], "id": "code-013"}
+{"hidden_tests": ["assert kth_largest([5, 5, 5, 5, 5, 5, 5]) == None", "assert kth_largest([]) == None", "assert kth_largest([9, 9, 1, 2, 3, 4, 5, 6]) == 2", "assert kth_largest([6, 5, 4, 3, 2, 1]) == 1", "assert kth_largest([1]) == None"], "id": "code-014"}
+{"hidden_tests": ["assert rotate_left([]) == []", "assert rotate_left([0, 1, 2, 3, 4]) == [3, 4, 0, 1, 2]", "assert rotate_left([7]) == [7]", "assert rotate_left([1, 2]) == [2, 1]", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8]) == [3, 4, 5, 6, 7, 8, 0, 1, 2]"], "id": "code-015"}
+{"hidden_tests": ["assert rotate_left([]) == []", "assert rotate_left([0, 1, 2, 3, 4, 5]) == [4, 5, 0, 1, 2, 3]", "assert rotate_left([7]) == [7]", "assert rotate_left([1, 2, 3]) == [2, 3, 1]", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3]"], "id": "code-016"}
+{"hidden_tests": ["assert rotate_left([]) == []", "assert rotate_left([0, 1, 2, 3, 4, 5, 6]) == [5, 6, 0, 1, 2, 3, 4]", "assert rotate_left([7]) == [7]", "assert rotate_left([1, 2]) == [2, 1]", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) == [5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4]"], "id": "code-017"}
+{"hidden_tests": ["assert rotate_left([]) == []", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8]) == [7, 8, 0, 1, 2, 3, 4, 5, 6]", "assert rotate_left([7]) == [7]", "assert rotate_left([1, 2]) == [2, 1]", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) == [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 0, 1, 2, 3, 4, 5, 6]"], "id": "code-018"}
+{"hidden_tests": ["assert rotate_left([]) == []", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) == [8, 9, 0, 1, 2, 3, 4, 5, 6, 7]", "assert rotate_left([7]) == [7]", "assert rotate_left([1, 2, 3]) == [3, 1, 2]", "assert rotate_left([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]) == [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0, 1, 2, 3, 4, 5, 6, 7]"], "id": "code-019"}
+{"hidden_tests": ["assert capped_running_totals([]) == []", "assert capped_running_totals([15]) == [10]", "assert capped_running_totals([-1, 10, 3]) == [-1, 9, 10]", "assert capped_running_totals([0]) == [0]", "assert capped_running_totals([10, -10, 1]) == [10, 0, 1]"], "id": "code-020"}
+{"hidden_tests": ["assert capped_running_totals([]) == []", "assert capped_running_totals([20]) == [15]", "assert capped_running_totals([-1, 15, 3]) == [-1, 14, 15]", "assert capped_running_totals([0]) == [0]", "assert capped_running_totals([15, -15, 1]) == [15, 0, 1]"], "id": "code-021"}
+{"hidden_tests": ["assert capped_running_totals([]) == []", "assert capped_running_totals([25]) == [20]", "assert capped_running_totals([-1, 20, 3]) == [-1, 19, 20]", "assert capped_running_totals([0]) == [0]", "assert capped_running_totals([20, -20, 1]) == [20, 0, 1]"], "id": "code-022"}
+{"hidden_tests": ["assert capped_running_totals([]) == []", "assert capped_running_totals([35]) == [30]", "assert capped_running_totals([-1, 30, 3]) == [-1, 29, 30]", "assert capped_running_totals([0]) == [0]", "assert capped_running_totals([30, -30, 1]) == [30, 0, 1]"], "id": "code-023"}
+{"hidden_tests": ["assert capped_running_totals([]) == []", "assert capped_running_totals([55]) == [50]", "assert capped_running_totals([-1, 50, 3]) == [-1, 49, 50]", "assert capped_running_totals([0]) == [0]", "assert capped_running_totals([50, -50, 1]) == [50, 0, 1]"], "id": "code-024"}
+{"hidden_tests": ["assert chunk([]) == []", "assert chunk([0, 1, 2]) == [[0, 1], [2]]", "assert chunk([0, 1, 2, 3, 4]) == [[0, 1], [2, 3], [4]]", "assert chunk([1]) == [[1]]", "assert chunk([0]) == [[0]]"], "id": "code-025"}
+{"hidden_tests": ["assert chunk([]) == []", "assert chunk([0, 1, 2, 3]) == [[0, 1, 2], [3]]", "assert chunk([0, 1, 2, 3, 4, 5, 6, 7]) == [[0, 1, 2], [3, 4, 5], [6, 7]]", "assert chunk([1]) == [[1]]", "assert chunk([0, 1]) == [[0, 1]]"], "id": "code-026"}
+{"hidden_tests": ["assert chunk([]) == []", "assert chunk([0, 1, 2, 3, 4]) == [[0, 1, 2, 3], [4]]", "assert chunk([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10]]", "assert chunk([1]) == [[1]]", "assert chunk([0, 1, 2]) == [[0, 1, 2]]"], "id": "code-027"}
+{"hidden_tests": ["assert chunk([]) == []", "assert chunk([0, 1, 2, 3, 4, 5]) == [[0, 1, 2, 3, 4], [5]]", "assert chunk([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]) == [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13]]", "assert chunk([1]) == [[1]]", "assert chunk([0, 1, 2, 3]) == [[0, 1, 2, 3]]"], "id": "code-028"}
+{"hidden_tests": ["assert chunk([]) == []", "assert chunk([0, 1, 2, 3, 4, 5, 6]) == [[0, 1, 2, 3, 4, 5], [6]]", "assert chunk([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) == [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16]]", "assert chunk([1]) == [[1]]", "assert chunk([0, 1, 2, 3, 4]) == [[0, 1, 2, 3, 4]]"], "id": "code-029"}
+{"hidden_tests": ["assert count_digit(0) == 0", "assert count_digit(-11) == 2", "assert count_digit(10101) == 3", "assert count_digit(-5) == 0", "assert count_digit(11) == 2"], "id": "code-030"}
+{"hidden_tests": ["assert count_digit(0) == 0", "assert count_digit(-22) == 2", "assert count_digit(20202) == 3", "assert count_digit(-5) == 0", "assert count_digit(12) == 1"], "id": "code-031"}
+{"hidden_tests": ["assert count_digit(0) == 0", "assert count_digit(-33) == 2", "assert count_digit(30303) == 3", "assert count_digit(-5) == 0", "assert count_digit(13) == 1"], "id": "code-032"}
+{"hidden_tests": ["assert count_digit(0) == 0", "assert count_digit(-77) == 2", "assert count_digit(70707) == 3", "assert count_digit(-5) == 0", "assert count_digit(17) == 1"], "id": "code-033"}
+{"hidden_tests": ["assert count_digit(0) == 0", "assert count_digit(-99) == 2", "assert count_digit(90909) == 3", "assert count_digit(-5) == 0", "assert count_digit(19) == 1"], "id": "code-034"}
+{"hidden_tests": ["assert indices_above([]) == []", "assert indices_above([0]) == []", "assert indices_above([0, 1, 0]) == [1]", "assert indices_above([-1]) == []", "assert indices_above([3, 0, -4, 9]) == [0, 3]"], "id": "code-035"}
+{"hidden_tests": ["assert indices_above([]) == []", "assert indices_above([5]) == []", "assert indices_above([5, 6, 5]) == [1]", "assert indices_above([4]) == []", "assert indices_above([8, 5, 1, 14]) == [0, 3]"], "id": "code-036"}
+{"hidden_tests": ["assert indices_above([]) == []", "assert indices_above([10]) == []", "assert indices_above([10, 11, 10]) == [1]", "assert indices_above([9]) == []", "assert indices_above([13, 10, 6, 19]) == [0, 3]"], "id": "code-037"}
+{"hidden_tests": ["assert indices_above([]) == []", "assert indices_above([25]) == []", "assert indices_above([25, 26, 25]) == [1]", "assert indices_above([24]) == []", "assert indices_above([28, 25, 21, 34]) == [0, 3]"], "id": "code-038"}
+{"hidden_tests": ["assert indices_above([]) == []", "assert indices_above([100]) == []", "assert indices_above([100, 101, 100]) == [1]", "assert indices_above([99]) == []", "assert indices_above([103, 100, 96, 109]) == [0, 3]"], "id": "code-039"}
+{"hidden_tests": ["assert shift_letters('') == ''", "assert shift_letters('xyz') == 'yza'", "assert shift_letters('zebra') == 'afcsb'", "assert shift_letters('A-z!') == 'A-a!'", "assert shift_letters('mno') == 'nop'"], "id": "code-040"}
+{"hidden_tests": ["assert shift_letters('') == ''", "assert shift_letters('xyz') == 'zab'", "assert shift_letters('zebra') == 'bgdtc'", "assert shift_letters('A-z!') == 'A-b!'", "assert shift_letters('mno') == 'opq'"], "id": "code-041"}
+{"hidden_tests": ["assert shift_letters('') == ''", "assert shift_letters('xyz') == 'abc'", "assert shift_letters('zebra') == 'cheud'", "assert shift_letters('A-z!') == 'A-c!'", "assert shift_letters('mno') == 'pqr'"], "id": "code-042"}
+{"hidden_tests": ["assert shift_letters('') == ''", "assert shift_letters('xyz') == 'bcd'", "assert shift_letters('zebra') == 'difve'", "assert shift_letters('A-z!') == 'A-d!'", "assert shift_letters('mno') == 'qrs'"], "id": "code-043"}
+{"hidden_tests": ["assert shift_letters('') == ''", "assert shift_letters('xyz') == 'cde'", "assert shift_letters('zebra') == 'ejgwf'", "assert shift_letters('A-z!') == 'A-e!'", "assert shift_letters('mno') == 'rst'"], "id": "code-044"}
+{"hidden_tests": ["assert average_rounded([]) == 0.0", "assert average_rounded([5]) == 5.0", "assert average_rounded([1, 1, 2]) == 1.0", "assert average_rounded([-3, 4]) == 0.0", "assert average_rounded([0.5, 0.25, 0.125]) == 0.0"], "id": "code-045"}
+{"hidden_tests": ["assert average_rounded([]) == 0.0", "assert average_rounded([5]) == 5.0", "assert average_rounded([1, 1, 2]) == 1.3", "assert average_rounded([-3, 4]) == 0.5", "assert average_rounded([0.5, 0.25, 0.125]) == 0.3"], "id": "code-046"}
+{"hidden_tests": ["assert average_rounded([]) == 0.0", "assert average_rounded([5]) == 5.0", "assert average_rounded([1, 1, 2]) == 1.33", "assert average_rounded([-3, 4]) == 0.5", "assert average_rounded([0.5, 0.25, 0.125]) == 0.29"], "id": "code-047"}
+{"hidden_tests": ["assert average_rounded([]) == 0.0", "assert average_rounded([5]) == 5.0", "assert average_rounded([1, 1, 2]) == 1.333", "assert average_rounded([-3, 4]) == 0.5", "assert average_rounded([0.5, 0.25, 0.125]) == 0.292"], "id": "code-048"}
+{"hidden_tests": ["assert average_rounded([]) == 0.0", "assert average_rounded([5]) == 5.0", "assert average_rounded([1, 1, 2]) == 1.3333", "assert average_rounded([-3, 4]) == 0.5", "assert average_rounded([0.5, 0.25, 0.125]) == 0.2917"], "id": "code-049"}
+{"hidden_tests": ["assert is_letter_palindrome('A man, a plan, a canal: Panama') == True", "assert is_letter_palindrome('') == False", "assert is_letter_palindrome(\"No 'x' in Nixon\") == True", "assert is_letter_palindrome('ab') == False", "assert is_letter_palindrome('Was it a car?') == False"], "id": "code-050"}
+{"hidden_tests": ["assert is_letter_palindrome('A man, a plan, a canal: Panama') == True", "assert is_letter_palindrome('') == False", "assert is_letter_palindrome(\"No 'x' in Nixon\") == True", "assert is_letter_palindrome('ab') == False", "assert is_letter_palindrome('Was it a car?') == False"], "id": "code-051"}
+{"hidden_tests": ["assert is_letter_palindrome('A man, a plan, a canal: Panama') == True", "assert is_letter_palindrome('') == False", "assert is_letter_palindrome(\"No 'x' in Nixon\") == True", "assert is_letter_palindrome('ab') == False", "assert is_letter_palindrome('Was it a car?') == False"], "id": "code-052"}
+{"hidden_tests": ["assert is_letter_palindrome('A man, a plan, a canal: Panama') == True", "assert is_letter_palindrome('') == False", "assert is_letter_palindrome(\"No 'x' in Nixon\") == True", "assert is_letter_palindrome('ab') == False", "assert is_letter_palindrome('Was it a car?') == False"], "id": "code-053"}
+{"hidden_tests": ["assert is_letter_palindrome('A man, a plan, a canal: Panama') == True", "assert is_letter_palindrome('') == False", "assert is_letter_palindrome(\"No 'x' in Nixon\") == True", "assert is_letter_palindrome('ab') == False", "assert is_letter_palindrome('Was it a car?') == False"], "id": "code-054"}
+{"hidden_tests": ["assert keep_at_most([]) == []", "assert keep_at_most([9, 1, 9, 1]) == [9, 1]", "assert keep_at_most([5, 3, 5, 3, 1]) == [5, 3, 1]", "assert keep_at_most([2]) == [2]", "assert keep_at_most([4, 2, 4, 4, 2, 4]) == [4, 2]"], "id": "code-055"}
+{"hidden_tests": ["assert keep_at_most([]) == []", "assert keep_at_most([9, 1, 9, 1, 9, 1]) == [9, 1, 9, 1]", "assert keep_at_most([5, 3, 5, 3, 1]) == [5, 3, 5, 3, 1]", "assert keep_at_most([2, 2]) == [2, 2]", "assert keep_at_most([4, 2, 4, 4, 2, 4]) == [4, 2, 4, 2]"], "id": "code-056"}
+{"hidden_tests": ["assert keep_at_most([]) == []", "assert keep_at_most([9, 1, 9, 1, 9, 1, 9, 1]) == [9, 1, 9, 1, 9, 1]", "assert keep_at_most([5, 3, 5, 3, 1]) == [5, 3, 5, 3, 1]", "assert keep_at_most([2, 2, 2]) == [2, 2, 2]", "assert keep_at_most([4, 2, 4, 4, 2, 4]) == [4, 2, 4, 4, 2]"], "id": "code-057"}
+{"hidden_tests": ["assert keep_at_most([]) == []", "assert keep_at_most([9, 1, 9, 1, 9, 1, 9, 1, 9, 1]) == [9, 1, 9, 1, 9, 1, 9, 1]", "assert keep_at_most([5, 3, 5, 3, 1]) == [5, 3, 5, 3, 1]", "assert keep_at_most([2, 2, 2, 2]) == [2, 2, 2, 2]", "assert keep_at_most([4, 2, 4, 4, 2, 4]) == [4, 2, 4, 4, 2, 4]"], "id": "code-058"}
+{"hidden_tests": ["assert keep_at_most([]) == []", "assert keep_at_most([9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1]) == [9, 1, 9, 1, 9, 1, 9, 1, 9, 1]", "assert keep_at_most([5, 3, 5, 3, 1]) == [5, 3, 5, 3, 1]", "assert keep_at_most([2, 2, 2, 2, 2]) == [2, 2, 2, 2, 2]", "assert keep_at_most([4, 2, 4, 4, 2, 4]) == [4, 2, 4, 4, 2, 4]"], "id": "code-059"}

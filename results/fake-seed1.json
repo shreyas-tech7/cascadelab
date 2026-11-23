@@ -1,0 +1,510 @@
+{
+ "agreement_k": 5,
+ "bootstrap": {
+  "reps": 2000,
+  "seed": 0
+ },
+ "fixtures": "fake-seed1",
+ "manifest": {
+  "cheap": "fake-cheap",
+  "note": "simulated models, not real LLM output",
+  "provider": "fake",
+  "recorded_on": "2026-11-23",
+  "seed": 1,
+  "strong": "fake-strong"
+ },
+ "priced_as": {
+  "fake-cheap": "llama-3.1-8b-instant on Groq",
+  "fake-strong": "llama-3.3-70b-versatile on Groq"
+ },
+ "prices_checked_on": "2026-11-23",
+ "router": {
+  "embedder": "hash-512",
+  "threshold": 0.5,
+  "train_ids": [
+   "code-000",
+   "code-001",
+   "code-002",
+   "code-003",
+   "code-005",
+   "code-007",
+   "code-010",
+   "code-011",
+   "code-012",
+   "code-015",
+   "code-016",
+   "code-017",
+   "code-018",
+   "code-020",
+   "code-025",
+   "code-027",
+   "code-028",
+   "code-030",
+   "code-034",
+   "code-035",
+   "code-037",
+   "code-038",
+   "code-039",
+   "code-040",
+   "code-043",
+   "code-044",
+   "code-045",
+   "code-046",
+   "code-047",
+   "code-048",
+   "code-050",
+   "code-051",
+   "code-052",
+   "code-054",
+   "code-056",
+   "code-059",
+   "json-001",
+   "json-002",
+   "json-003",
+   "json-005",
+   "json-006",
+   "json-007",
+   "json-008",
+   "json-010",
+   "json-011",
+   "json-012",
+   "json-014",
+   "json-015",
+   "json-016",
+   "json-017",
+   "json-018",
+   "json-019",
+   "json-020",
+   "json-025",
+   "json-027",
+   "json-029",
+   "json-030",
+   "json-031",
+   "json-032",
+   "json-033",
+   "json-034",
+   "json-038",
+   "json-039",
+   "json-043",
+   "json-045",
+   "json-046",
+   "json-047",
+   "json-050",
+   "json-051",
+   "json-052",
+   "json-053",
+   "json-057",
+   "math-001",
+   "math-002",
+   "math-003",
+   "math-007",
+   "math-009",
+   "math-011",
+   "math-013",
+   "math-014",
+   "math-019",
+   "math-021",
+   "math-022",
+   "math-023",
+   "math-025",
+   "math-026",
+   "math-027",
+   "math-029",
+   "math-031",
+   "math-033",
+   "math-034",
+   "math-035",
+   "math-036",
+   "math-037",
+   "math-039",
+   "math-040",
+   "math-041",
+   "math-042",
+   "math-044",
+   "math-048",
+   "math-050",
+   "math-051",
+   "math-053",
+   "math-054",
+   "math-056",
+   "math-057",
+   "math-058",
+   "math-059"
+  ]
+ },
+ "splits": {
+  "dev": {
+   "cascade_agree": {
+    "accuracy": 0.935185,
+    "accuracy_by_family": {
+     "code": 0.944444,
+     "json": 0.888889,
+     "math": 0.972222
+    },
+    "accuracy_ci95": [
+     0.872224,
+     0.968252
+    ],
+    "calls_per_task": 5.703704,
+    "correct": 101,
+    "cost_per_1000_usd": 0.074836,
+    "escalation_rate": 0.703704,
+    "label": "Cascade on agreement (k=5)",
+    "latency_p50_ms": 797.5,
+    "latency_p95_ms": 1360.55,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.055556,
+     0.018519,
+     0.101852
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.009308,
+     0.003151,
+     0.015405
+    ]
+   },
+   "cascade_check": {
+    "accuracy": 0.842593,
+    "accuracy_by_family": {
+     "code": 0.888889,
+     "json": 0.833333,
+     "math": 0.805556
+    },
+    "accuracy_ci95": [
+     0.762313,
+     0.899338
+    ],
+    "calls_per_task": 1.212963,
+    "correct": 91,
+    "cost_per_1000_usd": 0.020153,
+    "escalation_rate": 0.212963,
+    "label": "Cascade on visible check",
+    "latency_p50_ms": 255.0,
+    "latency_p95_ms": 1269.45,
+    "n": 108,
+    "vs_strong_accuracy": [
+     -0.037037,
+     -0.12037,
+     0.037037
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.045374,
+     -0.051855,
+     -0.038659
+    ]
+   },
+   "cheap_only": {
+    "accuracy": 0.648148,
+    "accuracy_by_family": {
+     "code": 0.666667,
+     "json": 0.722222,
+     "math": 0.555556
+    },
+    "accuracy_ci95": [
+     0.554409,
+     0.73171
+    ],
+    "calls_per_task": 1.0,
+    "correct": 70,
+    "cost_per_1000_usd": 0.005879,
+    "escalation_rate": 0.0,
+    "label": "Cheap model only",
+    "latency_p50_ms": 249.0,
+    "latency_p95_ms": 305.0,
+    "n": 108,
+    "vs_strong_accuracy": [
+     -0.231481,
+     -0.342593,
+     -0.12037
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.059648,
+     -0.064377,
+     -0.054727
+    ]
+   },
+   "learned_router": {
+    "accuracy": 0.861111,
+    "accuracy_by_family": {
+     "code": 0.861111,
+     "json": 0.777778,
+     "math": 0.944444
+    },
+    "accuracy_ci95": [
+     0.783426,
+     0.91399
+    ],
+    "calls_per_task": 1.0,
+    "correct": 93,
+    "cost_per_1000_usd": 0.029397,
+    "escalation_rate": 0.425926,
+    "label": "Learned router",
+    "latency_p50_ms": 291.5,
+    "latency_p95_ms": 1013.15,
+    "n": 108,
+    "vs_strong_accuracy": [
+     -0.018519,
+     -0.083333,
+     0.046296
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.036131,
+     -0.042949,
+     -0.02929
+    ]
+   },
+   "oracle_router": {
+    "accuracy": 0.953704,
+    "accuracy_by_family": {
+     "code": 0.972222,
+     "json": 0.916667,
+     "math": 0.972222
+    },
+    "accuracy_ci95": [
+     0.896175,
+     0.980065
+    ],
+    "calls_per_task": 1.0,
+    "correct": 103,
+    "cost_per_1000_usd": 0.026212,
+    "escalation_rate": 0.351852,
+    "label": "Oracle router (upper bound)",
+    "latency_p50_ms": 277.5,
+    "latency_p95_ms": 1000.4,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.074074,
+     0.027778,
+     0.12963
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.039315,
+     -0.045903,
+     -0.032543
+    ]
+   },
+   "strong_only": {
+    "accuracy": 0.87963,
+    "accuracy_by_family": {
+     "code": 0.833333,
+     "json": 0.888889,
+     "math": 0.916667
+    },
+    "accuracy_ci95": [
+     0.804891,
+     0.928289
+    ],
+    "calls_per_task": 1.0,
+    "correct": 95,
+    "cost_per_1000_usd": 0.065528,
+    "escalation_rate": 0.0,
+    "label": "Strong model only",
+    "latency_p50_ms": 848.0,
+    "latency_p95_ms": 1082.35,
+    "n": 108,
+    "vs_strong_accuracy": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "heldout": {
+   "cascade_agree": {
+    "accuracy": 0.902778,
+    "accuracy_by_family": {
+     "code": 0.875,
+     "json": 0.958333,
+     "math": 0.875
+    },
+    "accuracy_ci95": [
+     0.81265,
+     0.952104
+    ],
+    "calls_per_task": 5.652778,
+    "correct": 65,
+    "cost_per_1000_usd": 0.070342,
+    "escalation_rate": 0.652778,
+    "label": "Cascade on agreement (k=5)",
+    "latency_p50_ms": 735.5,
+    "latency_p95_ms": 1412.0,
+    "n": 72,
+    "vs_strong_accuracy": [
+     0.013889,
+     -0.027778,
+     0.055556
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.004381,
+     -0.003849,
+     0.012103
+    ]
+   },
+   "cascade_check": {
+    "accuracy": 0.777778,
+    "accuracy_by_family": {
+     "code": 0.791667,
+     "json": 0.916667,
+     "math": 0.625
+    },
+    "accuracy_ci95": [
+     0.66909,
+     0.858326
+    ],
+    "calls_per_task": 1.166667,
+    "correct": 56,
+    "cost_per_1000_usd": 0.019194,
+    "escalation_rate": 0.166667,
+    "label": "Cascade on visible check",
+    "latency_p50_ms": 255.5,
+    "latency_p95_ms": 1277.55,
+    "n": 72,
+    "vs_strong_accuracy": [
+     -0.111111,
+     -0.208333,
+     -0.013889
+    ],
+    "vs_strong_accuracy_unpaired_ci95": [
+     -0.222222,
+     0.013889
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.046767,
+     -0.054804,
+     -0.038858
+    ]
+   },
+   "cheap_only": {
+    "accuracy": 0.652778,
+    "accuracy_by_family": {
+     "code": 0.583333,
+     "json": 0.791667,
+     "math": 0.583333
+    },
+    "accuracy_ci95": [
+     0.537613,
+     0.752466
+    ],
+    "calls_per_task": 1.0,
+    "correct": 47,
+    "cost_per_1000_usd": 0.0059,
+    "escalation_rate": 0.0,
+    "label": "Cheap model only",
+    "latency_p50_ms": 243.5,
+    "latency_p95_ms": 334.05,
+    "n": 72,
+    "vs_strong_accuracy": [
+     -0.236111,
+     -0.361111,
+     -0.125
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.060062,
+     -0.066042,
+     -0.054003
+    ]
+   },
+   "learned_router": {
+    "accuracy": 0.736111,
+    "accuracy_by_family": {
+     "code": 0.75,
+     "json": 0.791667,
+     "math": 0.666667
+    },
+    "accuracy_ci95": [
+     0.624241,
+     0.824062
+    ],
+    "calls_per_task": 1.0,
+    "correct": 53,
+    "cost_per_1000_usd": 0.023871,
+    "escalation_rate": 0.347222,
+    "label": "Learned router",
+    "latency_p50_ms": 278.0,
+    "latency_p95_ms": 1008.5,
+    "n": 72,
+    "vs_strong_accuracy": [
+     -0.152778,
+     -0.25,
+     -0.055556
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.04209,
+     -0.050087,
+     -0.03406
+    ]
+   },
+   "oracle_router": {
+    "accuracy": 0.930556,
+    "accuracy_by_family": {
+     "code": 0.916667,
+     "json": 0.958333,
+     "math": 0.916667
+    },
+    "accuracy_ci95": [
+     0.84752,
+     0.969975
+    ],
+    "calls_per_task": 1.0,
+    "correct": 67,
+    "cost_per_1000_usd": 0.026376,
+    "escalation_rate": 0.347222,
+    "label": "Oracle router (upper bound)",
+    "latency_p50_ms": 285.5,
+    "latency_p95_ms": 1018.5,
+    "n": 72,
+    "vs_strong_accuracy": [
+     0.041667,
+     0.0,
+     0.083333
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     -0.039586,
+     -0.047819,
+     -0.031482
+    ]
+   },
+   "strong_only": {
+    "accuracy": 0.888889,
+    "accuracy_by_family": {
+     "code": 0.875,
+     "json": 0.958333,
+     "math": 0.833333
+    },
+    "accuracy_ci95": [
+     0.795771,
+     0.942612
+    ],
+    "calls_per_task": 1.0,
+    "correct": 64,
+    "cost_per_1000_usd": 0.065961,
+    "escalation_rate": 0.0,
+    "label": "Strong model only",
+    "latency_p50_ms": 871.5,
+    "latency_p95_ms": 1199.55,
+    "n": 72,
+    "vs_strong_accuracy": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "vs_strong_cost_per_1000_usd": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  }
+ },
+ "task_files_sha256": {
+  "hidden.jsonl": "4fcf57ac7d70aaaf82316d3e5712f7918f91f93d0005cdfcc9cf2ff78cf9163a",
+  "split.json": "b4cafa8cc0e2fb95dffec7d91ea77363cd1ab2fe5462b6d6244562eb079c6472",
+  "visible.jsonl": "44653ce8ed659f8e08f91b1b58767c46e31007c66056d2267a0548f6f57f6423"
+ }
+}

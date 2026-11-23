@@ -1,0 +1,8 @@
+{
+ "cheap": "fake-cheap",
+ "note": "simulated models, not real LLM output",
+ "provider": "fake",
+ "recorded_on": "2026-11-23",
+ "seed": 0,
+ "strong": "fake-strong"
+}

@@ -13,6 +13,32 @@
   "seed": 1,
   "strong": "fake-strong"
  },
+ "pairing": {
+  "cascade_check_vs_cheap_only": {
+   "diff": 0.125,
+   "paired_ci95": [
+    0.055556,
+    0.208333
+   ],
+   "same_outcome_share": 0.875,
+   "unpaired_ci95": [
+    -0.027778,
+    0.277778
+   ]
+  },
+  "cascade_check_vs_strong_only": {
+   "diff": -0.111111,
+   "paired_ci95": [
+    -0.208333,
+    -0.013889
+   ],
+   "same_outcome_share": 0.805556,
+   "unpaired_ci95": [
+    -0.222222,
+    0.013889
+   ]
+  }
+ },
  "priced_as": {
   "fake-cheap": "llama-3.1-8b-instant on Groq",
   "fake-strong": "llama-3.3-70b-versatile on Groq"
@@ -369,10 +395,6 @@
      -0.111111,
      -0.208333,
      -0.013889
-    ],
-    "vs_strong_accuracy_unpaired_ci95": [
-     -0.222222,
-     0.013889
     ],
     "vs_strong_cost_per_1000_usd": [
      -0.046767,

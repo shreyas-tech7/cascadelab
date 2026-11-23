@@ -145,12 +145,30 @@ def run(fixture_dir: Path, data_dir: Path = DATA) -> tuple[dict, list[dict]]:
         summary, rows = evaluate_split(ts, store, router, hidden, prices)
         result["splits"][name] = summary
         all_rows += [r | {"split": name} for r in rows]
-    s = result["splits"]["heldout"]
-    a = [r["correct"] for r in all_rows if r["split"] == "heldout" and r["strategy"] == "cascade_check"]
-    b = [r["correct"] for r in all_rows if r["split"] == "heldout" and r["strategy"] == "strong_only"]
-    lo, hi = unpaired_bootstrap(a, b)
-    s["cascade_check"]["vs_strong_accuracy_unpaired_ci95"] = [_r(lo), _r(hi)]
+    result["pairing"] = pairing(all_rows)
     return result, all_rows
+
+
+def pairing(rows: list[dict]) -> dict:
+    """Paired against unpaired interval widths on the held-out split, for the interview point."""
+    held = [r for r in rows if r["split"] == "heldout"]
+
+    def col(name):
+        return [float(r["correct"]) for r in held if r["strategy"] == name]
+
+    out = {}
+    for a, b in (("cascade_check", "cheap_only"), ("cascade_check", "strong_only")):
+        x, y = col(a), col(b)
+        d, lo, hi = paired_bootstrap(x, y)
+        ulo, uhi = unpaired_bootstrap(x, y)
+        same = sum(p == q for p, q in zip(x, y, strict=True)) / len(x)
+        out[f"{a}_vs_{b}"] = {
+            "diff": _r(d),
+            "paired_ci95": [_r(lo), _r(hi)],
+            "unpaired_ci95": [_r(ulo), _r(uhi)],
+            "same_outcome_share": _r(same),
+        }
+    return out
 
 
 def write(result: dict, rows: list[dict], out_dir: Path) -> tuple[Path, Path]:

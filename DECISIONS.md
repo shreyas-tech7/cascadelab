@@ -17,3 +17,7 @@
 - 2026-11-23 Intervals: Wilson 95% for accuracy, paired bootstrap (2000 resamples, seed 0) for differences against strong-only. Cost and latency come from fixed fixture values, so they carry no sampling interval except the bootstrap of the cost difference.
 - 2026-11-23 Second seed: the fake has a seed. Seed 1 is a second, independent draw of the same fake, reported next to seed 0.
 - 2026-11-23 Skills: `npx skills` installs were not tried because earlier builds in this project had them denied. Ponytail and caveman were cloned to /tmp, scanned with skill-scanner and read by hand.
+
+## Secret scan allowlist
+
+gitleaks flagged every fixture line, because each `key` field is a 64 character hex string that looks like an API key. The key is a SHA-256 of the request (model, messages, temperature, sample), not a secret. `.gitleaks.toml` keeps the default rules and allows only matches of the form `key": "<hex>"`. An allowlist by path would also hide a real key pasted into a fixture, so I tested that a planted GitHub token in a fixture file is still caught.

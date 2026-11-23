@@ -43,7 +43,7 @@ class FakeProvider:
         self.world = {r["id"]: r for r in map(json.loads, rows)}
 
     def greedy_correct(self, model: str, task: VisibleTask) -> bool:
-        return random.Random(f"{self.seed}|{model}|{task.id}|greedy").random() >= fail_rate(model, task)
+        return random.Random(f"{self.seed}|{model}|{task.id}|greedy").random() >= fail_rate(model, task)  # noqa: S311 - seeded fake, not security
 
     def _wrong(self, model: str, task: VisibleTask, rng: random.Random) -> str:
         w = self.world[task.id]
@@ -51,7 +51,7 @@ class FakeProvider:
         return rng.choice(pool)
 
     def answer(self, model: str, task: VisibleTask, sample: int) -> str:
-        rng = random.Random(f"{self.seed}|{model}|{task.id}|{sample}")
+        rng = random.Random(f"{self.seed}|{model}|{task.id}|{sample}")  # noqa: S311 - seeded fake, not security
         good = self.greedy_correct(model, task)
         if sample > 0:
             good = rng.random() < (0.85 if good else 0.35)
@@ -61,6 +61,6 @@ class FakeProvider:
         text = self.answer(model, task, sample)
         pt = math.ceil(sum(len(m["content"]) for m in task.messages()) / 4)
         ct = math.ceil(len(text) / 4) + 2
-        jitter = random.Random(f"{self.seed}|{model}|{task.id}|{sample}|ms").random()
+        jitter = random.Random(f"{self.seed}|{model}|{task.id}|{sample}|ms").random()  # noqa: S311 - seeded fake, not security
         ms = 120 + 4 * ct + 60 * jitter if model == CHEAP else 380 + 15 * ct + 200 * jitter
         return text, pt, ct, round(ms)

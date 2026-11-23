@@ -419,8 +419,10 @@ def _passes(src: str, fn: str, ref: str, args: list) -> bool:
 def _code_task(t: dict, c: int) -> tuple[str, dict, dict]:
     ref, edge, plain = (_src(t, w, c) for w in ("ref", "edge", "plain"))
     ex, hid = t["ex"](c), t["hid"](c)
-    assert _passes(edge, t["fn"], ref, ex) and not _passes(edge, t["fn"], ref, hid), (t["fn"], c, "edge")
-    assert not _passes(plain, t["fn"], ref, ex), (t["fn"], c, "plain")
+    if not (_passes(edge, t["fn"], ref, ex) and not _passes(edge, t["fn"], ref, hid)):
+        raise ValueError(f"{t['fn']} c={c}: the edge body must pass the examples and fail a hidden test")
+    if _passes(plain, t["fn"], ref, ex):
+        raise ValueError(f"{t['fn']} c={c}: the plain body must fail an example")
     doc = t["doc"].replace("{C}", str(c))
     examples = _asserts(t["fn"], ref, ex)
     prompt = (
@@ -437,7 +439,7 @@ def _code_task(t: dict, c: int) -> tuple[str, dict, dict]:
 
 
 def build() -> tuple[list[dict], list[dict], list[dict], dict]:
-    rng = random.Random(SEED)
+    rng = random.Random(SEED)  # noqa: S311 - seeded on purpose, so the task set is reproducible
     vis, hid, world = [], [], []
     for i in range(60):
         text, gold, steps = _math(rng, i % 10)
@@ -486,7 +488,7 @@ def make_split(ids: list[str], seed: int = SEED) -> dict:
     dev, held = [], []
     for fam in ("math", "json", "code"):
         group = sorted(x for x in ids if x.startswith(fam))
-        random.Random(f"{seed}-{fam}").shuffle(group)
+        random.Random(f"{seed}-{fam}").shuffle(group)  # noqa: S311 - seeded split, not security
         cut = round(len(group) * 0.6)
         dev += sorted(group[:cut])
         held += sorted(group[cut:])

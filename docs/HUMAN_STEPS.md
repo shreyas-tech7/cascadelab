@@ -2,10 +2,10 @@
 
 Steps that only Shreyas can do, in order.
 
-Release commit: `RELEASE_SHA` (the same SHA is in CHANGELOG.md).
+Release commit: `80c1a5c319345e91663de1b682d3afd3d7838e96` (the same SHA is in CHANGELOG.md).
 
 1. Open a pull request from `claude/project-thread-z94q4h` into `main`. Read the diff. Merge with a merge commit, so the release commit stays in the history of `main`.
-2. Create the tag on the release commit: `git fetch origin`, then `git tag -a v0.1.0-rc1 RELEASE_SHA -m "Release candidate 1"`, then `git push origin v0.1.0-rc1`. Or create a pre-release with that tag on GitHub.
+2. Create the tag on the release commit: `git fetch origin`, then `git tag -a v0.1.0-rc1 80c1a5c319345e91663de1b682d3afd3d7838e96 -m "Release candidate 1"`, then `git push origin v0.1.0-rc1`. Or create a pre-release with that tag on GitHub.
 3. Run the secret scan once more: `gitleaks git -v .` (the repo's `.gitleaks.toml` allows only the fixture request hashes).
 4. Fill in the About box from `docs/GITHUB_ABOUT.md` and the topics from `docs/topics.txt`, if the coordinator could not.
 5. Upload `docs/social-preview.png` under Settings, General, Social preview.

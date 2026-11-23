@@ -2,7 +2,7 @@
 
 ## v0.1.0-rc1 (2026-11-23)
 
-Release commit: RELEASE_SHA
+Release commit: 80c1a5c319345e91663de1b682d3afd3d7838e96
 
 - A frozen task set of 180 program-graded tasks in three families, with visible checks for strategies and hidden checks for scoring, and a 60/40 split stratified by family.
 - A seeded fake model pair whose cheap model fails more on harder tasks, with fixtures for two independent seeds.

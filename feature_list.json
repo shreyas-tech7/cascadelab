@@ -124,7 +124,7 @@
   {
     "id": "F14",
     "area": "release",
-    "description": "Release check and hand-off: RELEASE_CHECK, HUMAN_STEPS with release SHA, COWORK_PROMPT, GITHUB_ABOUT, topics (Done means 7)",
+    "description": "Release check and hand-off: RELEASE_CHECK, HUMAN_STEPS with release SHA, GITHUB_ABOUT, topics (Done means 7)",
     "steps": [
       "test -f docs/RELEASE_CHECK.md && grep -q 'Release commit' docs/HUMAN_STEPS.md"
     ],

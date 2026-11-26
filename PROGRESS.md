@@ -7,7 +7,7 @@ Branch: `claude/project-thread-z94q4h`.
 - F10 to F11: report with chart, static results page, decision guide, demo transcript, README generator with `--check`.
 - F12: CI (green on the branch), manual record workflow, issue templates, CONTRIBUTING, CHANGELOG, topics, About text, social preview.
 - F13: WALKTHROUGH, INTERVIEW_QA (15 answers), DECISIONS.
-- F14: release check (fresh reviewer and outside check, all findings fixed or logged in docs/RELEASE_CHECK.md), HUMAN_STEPS, COWORK_PROMPT.
+- F14: release check (fresh reviewer and outside check, all findings fixed or logged in docs/RELEASE_CHECK.md), HUMAN_STEPS.
 
 ## Next
 - Human steps in docs/HUMAN_STEPS.md: PR and merge, tag, record real models.
